@@ -1,0 +1,184 @@
+# ===============================
+#      GLOBAL SETTINGS
+# ===============================
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env files
+.env
+*.env
+.env.*
+secrets.json
+
+# VSCode
+.vscode/
+.history/
+
+# JetBrains / Rider
+.idea/
+*.sln.iml
+
+# Backup files
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Node (if needed)
+node_modules/
+
+
+# ===============================
+#       C# / ASP.NET BACKEND
+# ===============================
+
+# Build output
+bin/
+obj/
+out/
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+*.exe
+*.dll
+*.pdb
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.assets.json
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Publish output
+publish/
+appsettings.Development.json  # optional: ha nem akarod feltölteni
+
+
+# ===============================
+#            FLUTTER
+# ===============================
+
+# Flutter generated
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub/
+.melos_tool/
+
+# Dart
+.dart_tool/
+.packages
+
+# Android Flutter
+android/.gradle/
+android/local.properties
+android/app/**/keystore.properties
+android/key.properties
+*.keystore
+*.jks
+
+# iOS Flutter
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/flutter_export_environment.sh
+ios/Pods/
+ios/.symlinks/
+ios/DerivedData/
+Runner.xcworkspace/
+
+# Web Flutter
+web/profiles.json
+
+
+# ===============================
+#           PYTHON ML
+# ===============================
+
+# Byte-compiled
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Distributions
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual env
+venv/
+.venv/
+env/
+.env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# PyCache and tools
+.pytest_cache/
+.mypy_cache/
+
+# ML Models (ha nem akarod feltölteni)
+*.pkl
+*.joblib
+*.h5
+*.onnx
+
+
+# ===============================
+#            DOCKER
+# ===============================
+
+# Docker extras
+docker-data/
+docker-volume/
+docker-compose.override.yml
+
+# Containers/logs
+*.tar
+*.container
+*.img
+
+
+# ===============================
+#           WINDOWS
+# ===============================
+
+ehthumbs.db
+Desktop.ini
+
+
+# ===============================
+#           MACOS
+# ===============================
+
+.AppleDouble
+.LSOverride
+
+
+# ===============================
+#             LINUX
+# ===============================
+
+*~
+.cache/
