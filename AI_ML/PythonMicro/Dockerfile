@@ -8,6 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app.py .
 COPY multioutput_xgb_model.pkl .
+COPY workout_split_xgb_model.pkl .
 
 EXPOSE 8000
 

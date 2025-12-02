@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: diploma-sql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=PaeszEob_2003
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    networks:
+      - diplomanet
+
+  ml:
+    build: ./AI_ML/PythonMicro
+    container_name: diet-ml
+    ports:
+      - "8000:8000"
+    networks:
+      - diplomanet
+
+  api:
+    build:
+      context: ./Backend/DiplomaFitBackend/DiplomaFit.Api
+      dockerfile: Dockerfile
+    container_name: diploma-fit-api
+    depends_on:
+      - sql
+      - ml
+    environment:
+      # ASP.NET környezet
+      - ASPNETCORE_ENVIRONMENT=Development
+      # SQL kapcsolat: a szerver neve **sql**, mert a service neve ez
+      - ConnectionStrings__DefaultConnection=Server=diploma-sql,1433;Database=DiplomaFitDb;User Id=sa;Password=PaeszEob_2003;TrustServerCertificate=True;
+      # ML elérés: a szerver neve **ml**
+      - Ml__BaseUrl=http://ml:8000
+    ports:
+      - "8080:8080"
+    networks:
+      - diplomanet
+    command: ["dotnet", "DiplomaFit.Api.dll", "/seed"]
+    volumes:
+      - ./docs:/docs
+
+
+networks:
+  diplomanet:
+
+volumes:
+  sql_data:

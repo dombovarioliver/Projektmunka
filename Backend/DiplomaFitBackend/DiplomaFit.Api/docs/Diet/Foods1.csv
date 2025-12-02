@@ -1,0 +1,95 @@
+food_id;food_name_hu;food_name_en;kcal_per_100;prot;carbs;fat;meal_type
+NULL;Zabpehely (natúr);Oats (plain);380;13;60;7;breakfast
+NULL;Zabkása tejjel és banánnal;Oatmeal with milk and banana;120;4;20;3;breakfast
+NULL;Zabpehely csokis müzlivel;Oats with chocolate muesli;390;10;62;8;breakfast
+NULL;Müzli (cukor nélkül);Muesli (no sugar);370;10;65;6;breakfast
+NULL;Müzli (csokis);Chocolate muesli;410;8;68;9;breakfast
+NULL;Teljes kiőrlésű kenyér;Whole grain bread;230;9;40;3;breakfast
+NULL;Fehér kenyér;White bread;260;8;48;3;breakfast
+NULL;Rozskenyér;Rye bread;240;8;43;3;breakfast
+NULL;Teljes kiőrlésű zsemle;Whole grain roll;250;9;44;4;breakfast
+NULL;Teljes kiőrlésű toast kenyér;Whole grain toast bread;240;9;42;4;breakfast
+NULL;Pulykasonka;Turkey ham;110;20;2;3;breakfast
+NULL;Csirkemell sonka;Chicken breast ham;105;19;2;2;breakfast
+NULL;Sovány trappista sajt;Low-fat cheese;240;30;2;11;breakfast
+NULL;Edami sajt;Edam cheese;280;25;2;18;breakfast
+NULL;Fetasajt;Feta cheese;260;15;4;21;breakfast
+NULL;Tojás (főtt);Egg (boiled);150;13;1;11;breakfast
+NULL;Tojásrántotta (kevés olajjal);Scrambled eggs;170;11;2;13;breakfast
+NULL;Tükörtojás;Fried eggs;180;12;1;14;breakfast
+NULL;Omlett zöldségekkel;Vegetable omelette;130;10;4;8;breakfast
+NULL;Natúr joghurt (2%);Plain yogurt (2%);60;4;5;2;breakfast
+NULL;Görög joghurt (3.5%);Greek yogurt;90;9;4;5;breakfast
+NULL;Gyümölcsös joghurt (light);Fruit yogurt (light);70;4;11;1.5;breakfast
+NULL;Túrórudi (light);Cottage cheese bar (light);150;7;17;7;snack
+NULL;Sovány túró;Low-fat cottage cheese;90;13;3;3;snack
+NULL;Túrós kása (túró + joghurt);Curd bowl (cottage cheese + yogurt);110;11;6;4;snack
+NULL;Banán;Banana;90;1;21;0.3;snack
+NULL;Alma;Apple;50;0.3;13;0.2;snack
+NULL;Narancs;Orange;47;1;12;0.2;snack
+NULL;Körte;Pear;57;0.4;15;0.3;snack
+NULL;Szőlő;Grapes;70;0.6;18;0.3;snack
+NULL;Eper;Strawberry;32;0.7;7;0.3;snack
+NULL;Áfonya;Blueberries;57;0.7;14;0.3;snack
+NULL;Mandarin;Mandarin;53;0.8;13;0.3;snack
+NULL;Mandula;Almonds;580;21;20;50;snack
+NULL;Dió;Walnuts;650;15;14;60;snack
+NULL;Kesudió;Cashews;570;18;30;46;snack
+NULL;Mogyoró;Peanuts;590;25;16;49;snack
+NULL;Mogyoróvaj (100%);Peanut butter (100%);590;25;20;50;snack
+NULL;Napraforgómag;Sunflower seeds;580;20;18;51;snack
+NULL;Rizs (főtt, fehér);Rice (cooked, white);130;2.5;28;0.3;main
+NULL;Barna rizs (főtt);Brown rice (cooked);120;2.6;25;1;main
+NULL;Jázmin rizs (főtt);Jasmine rice (cooked);135;2.7;29;0.4;main
+NULL;Bulgur (főtt);Bulgur (cooked);110;3.1;23;0.4;main
+NULL;Kuszkusz (főtt);Couscous (cooked);110;3.5;23;0.6;main
+NULL;Teljes kiőrlésű tészta (főtt);Whole grain pasta (cooked);140;5;29;1.5;main
+NULL;Fehér tészta (főtt);White pasta (cooked);150;5;30;2;main
+NULL;Burgonya főtt;Potato (boiled);80;2;18;0.1;main
+NULL;Krumplipüré;Mashed potatoes;120;2.5;20;4;main
+NULL;Édesburgonya sütve;Sweet potato (baked);90;2;21;0.2;main
+NULL;Kuszkusz zöldségekkel;Couscous with vegetables;130;4;22;3;main
+NULL;Quinoa főtt;Quinoa (cooked);120;4;21;2;main
+NULL;Csirkemell grillezve (bőr nélkül);Grilled chicken breast;150;30;0;3;main
+NULL;Pulykamell grillezve;Grilled turkey breast;140;29;0;2;main
+NULL;Csirkemell sütve fűszerekkel;Baked chicken breast;160;29;1;4;main
+NULL;Csirkecomb sütve (bőr nélkül);Baked chicken thigh (no skin);190;24;0;10;main
+NULL;Darálthús (marha, 10% zsír, sütve);Ground beef (10% fat, cooked);220;26;0;12;main
+NULL;Marhasteak sütve;Beef steak (grilled);250;27;0;15;main
+NULL;Sertéskaraj sütve;Pork loin (roasted);220;25;0;13;main
+NULL;Lazac sütve;Salmon (baked);210;22;0;13;main
+NULL;Tonhal konzerv vízben;Canned tuna in water;110;24;0;1;main
+NULL;Tőkehal sütve;Baked cod;95;21;0;1;main
+NULL;Halrudacska sütve;Fish sticks (baked);220;12;22;10;main
+NULL;Vegyes zöldség (párolt);Mixed vegetables (steamed);45;2;8;0.5;main
+NULL;Brokkoli párolt;Broccoli (steamed);35;3;7;0.4;main
+NULL;Karfiol párolt;Cauliflower (steamed);30;2.5;5;0.3;main
+NULL;Zöldbab párolt;Green beans (steamed);35;2;7;0.3;main
+NULL;Zöldsaláta (öntet nélkül);Green salad (no dressing);20;1.5;3;0.2;main
+NULL;Paradicsom;Tomato;18;0.8;4;0.2;main
+NULL;Uborka;Cucumber;15;0.6;3;0.1;main
+NULL;Paprika;Bell pepper;25;1;6;0.2;main
+NULL;Spenót párolt;Spinach (steamed);30;3;4;0.4;main
+NULL;Csirkemell rizzsel és zöldséggel;Chicken with rice and vegetables;150;14;18;3;main
+NULL;Pulykamell édesburgonyával;Turkey with sweet potato;160;17;18;3;main
+NULL;Marhahús barna rizzsel;Beef with brown rice;190;15;20;6;main
+NULL;Lazac rizzsel és brokkolival;Salmon with rice and broccoli;185;14;16;8;main
+NULL;Zöldséges tészta csirkével;Chicken veggie pasta;170;13;20;5;main
+NULL;Zöldséges rizottó;Vegetable risotto;150;4;26;3;main
+NULL;Csicseriborsó rizzsel;Chickpeas with rice;170;7;30;3;main
+NULL;Lencsefőzelék (light);Lentil stew (light);120;7;16;3;main
+NULL;Babfőzelék (light);Bean stew (light);130;7;18;3;main
+NULL;Zabpalacsinta;Oat pancakes;180;8;24;6;breakfast
+NULL;Zabpalacsinta túróval;Oat pancakes with cottage cheese;190;11;23;6;breakfast
+NULL;Zabkása mogyoróvajjal és banánnal;Oatmeal with peanut butter and banana;180;6;24;7;breakfast
+NULL;Gyümölcssaláta;Fruit salad;60;1;14;0.3;snack
+NULL;Müzliszelet (házi, zab+magvak);Homemade muesli bar;250;7;30;10;snack
+NULL;Fehérjeturmix (tejjel);Protein shake (with milk);110;20;6;2;snack
+NULL;Fehérjeturmix (vízzel);Protein shake (with water);80;20;2;1;snack
+NULL;Csokis fehérjeszelet;Chocolate protein bar;210;18;18;8;snack
+NULL;Sós keksz (teljes kiőrlésű);Whole grain crackers;430;9;64;15;snack
+NULL;Puffasztott rizsszelet;Rice cakes;380;8;80;2;snack
+NULL;Kávé tejjel (kevés cukorral);Coffee with milk and little sugar;30;1;4;1;breakfast
+NULL;Zöld tea (cukor nélkül);Green tea (no sugar);1;0;0;0;any
+NULL;Narancslé 100%;Orange juice 100%;45;0.7;10;0.2;breakfast
+NULL;Cukormentes üdítő;Sugar-free soda;1;0;0;0;any
