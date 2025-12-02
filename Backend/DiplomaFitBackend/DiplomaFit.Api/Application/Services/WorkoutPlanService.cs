@@ -489,39 +489,74 @@ namespace DiplomaFit.Api.Application.Services
         {
             var exercises = new List<WorkoutExerciseDto>();
 
-            // 1) Összetett láb – guggolás / lábtoló / stb. (legs + is_compound = true)
-            var mainLeg = PickExercises("legs", "Legs", request, isCompound: true, count: 5)
-                .FirstOrDefault();
-            if (mainLeg != null)
-                exercises.Add(mainLeg);
+            // 1) 1–2 összetett láb (guggolás / felhúzás / lábtoló / stb.)
+            var compounds = PickExercises("legs", "Legs", request, isCompound: true, count: 5)
+                .ToList();
 
-            // 2) Hamstring izoláció (legs_hamstrings)
-            var ham = PickExercises("legs", "Legs", request, isCompound: false, count: 5, subgroup: "legs_hamstrings")
-                .FirstOrDefault();
-            if (ham != null)
-                exercises.Add(ham);
-
-            // 3) Vádli (calves) – az új sorok, amiket most raktunk a CSV-be
-            var calf = PickExercises("legs", "Legs", request, isCompound: false, count: 5, subgroup: "calves")
-                .FirstOrDefault();
-            if (calf != null)
-                exercises.Add(calf);
-
-            // 4) Extra: ha még 3-nál kevesebb van, dobjunk be még egy láb gyakorlatot (quads/ham)
-            if (exercises.Count < 3)
+            if (!compounds.Any())
             {
-                var extra = PickExercises("legs", "Legs", request, isCompound: false, count: 5)
-                    .FirstOrDefault();
-                if (extra != null)
-                    exercises.Add(extra);
+                // Ha nincs összetett lábgyakorlat, essünk vissza a legjobb elérhető izolációkra
+                compounds = PickExercises("legs", "Legs", request, isCompound: false, count: 5)
+                    .ToList();
             }
 
-            // Limit 3–4 gyakorlatra
-            if (exercises.Count > 4)
+            var pickedCompounds = TrimList(compounds, minCount: compounds.Any() ? 1 : 0, maxCount: 2);
+            exercises.AddRange(pickedCompounds);
+
+            // 2) Izolációk az egyes izomcsoportokra
+            WorkoutExerciseDto? PickIso(string subgroup)
+            {
+                var exactMatch = PickExercises("legs", "Legs", request, isCompound: false, count: 5, subgroup: subgroup)
+                    .FirstOrDefault();
+
+                if (exactMatch != null)
+                    return exactMatch;
+
+                return PickExercises("legs", "Legs", request, isCompound: false, count: 5)
+                    .FirstOrDefault();
+            }
+
+            void AddIfUnique(WorkoutExerciseDto? exercise)
+            {
+                if (exercise != null && exercises.All(e => e.ExerciseId != exercise.ExerciseId))
+                {
+                    exercises.Add(exercise);
+                }
+            }
+
+            var quadIso = PickIso("legs_quads");
+            AddIfUnique(quadIso);
+
+            var hamIso = PickIso("legs_hamstrings");
+            AddIfUnique(hamIso);
+
+            var calfIso = PickIso("calves");
+            AddIfUnique(calfIso);
+
+            // 3) Ha az izolációkból hiányzik valamelyik izomcsoport, próbáljunk meg alternatívát keresni
+            WorkoutExerciseDto? FallbackIso()
+            {
+                return PickExercises("legs", "Legs", request, isCompound: false, count: 10)
+                    .FirstOrDefault(e => exercises.All(x => x.ExerciseId != e.ExerciseId));
+            }
+
+            while (exercises.Count < 4)
+            {
+                var extra = FallbackIso();
+                if (extra == null)
+                {
+                    break;
+                }
+
+                AddIfUnique(extra);
+            }
+
+            // Limitálás 5 gyakorlatra (1–2 compound + 3 izoláció)
+            if (exercises.Count > 5)
             {
                 exercises = exercises
                     .OrderBy(_ => _random.Next())
-                    .Take(4)
+                    .Take(5)
                     .ToList();
             }
 
@@ -584,9 +619,19 @@ namespace DiplomaFit.Api.Application.Services
         {
             IQueryable<Exercise> query = _dbContext.Exercises.AsNoTracking()
                 .Where(e => e.PrimaryMuscleGroup == primaryMuscleGroup)
-                .Where(e => e.PushPullCategory == pushPullCategory)
+                //.Where(e => e.PushPullCategory == pushPullCategory)
                 .Where(e => e.IsCompound == isCompound)
                 .Where(e => e.DifficultyLevel <= request.Experience);
+
+
+            // A lábgyakorlatoknál ne bukjunk el a Push/Pull kategórián –
+            // sok lábmozdulatnál ez üres vagy másképp jelölt. A többi
+            // izomcsoportnál marad a szigorú egyezés.
+            if (!string.Equals(primaryMuscleGroup, "legs", StringComparison.OrdinalIgnoreCase))
+            {
+                query = query.Where(e => e.PushPullCategory == pushPullCategory);
+            }
+
 
             // HOME ONLY (equipment_level == 0): csak otthon végezhető gyakorlatok
             if (request.EquipmentLevel == 0)

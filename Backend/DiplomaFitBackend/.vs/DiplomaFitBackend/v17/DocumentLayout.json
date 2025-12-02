@@ -100,7 +100,7 @@
               "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Services\\WorkoutPlanService.cs",
               "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\WorkoutPlanService.cs",
               "RelativeToolTip": "DiplomaFit.Api\\Application\\Services\\WorkoutPlanService.cs",
-              "ViewState": "AgIAABICAAAAAAAAAAAIwOUBAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAGACAAAAAAAAAAAQwHkCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-23T02:12:53.989Z",
               "EditorCaption": ""
@@ -163,8 +163,7 @@
               "RelativeToolTip": "DiplomaFit.Api\\Domain\\Entities\\Exercise.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAQwBwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T00:55:47.286Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T00:55:47.286Z"
             },
             {
               "$type": "Document",
