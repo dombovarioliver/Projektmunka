@@ -1,0 +1,15 @@
+# Consolidated Python dependencies for the DiplomaFit stack.
+# These are aligned with AI_ML/PythonMicro/requirements.txt for local installs.
+fastapi==0.121.3
+uvicorn==0.38.0
+pydantic==2.12.4
+pandas==2.3.3
+numpy==2.3.5
+scikit-learn==1.7.2
+xgboost==3.1.2
+joblib==1.5.2
+
+# Flutter demo app tooling (install via official SDK, not pip)
+# This keeps the version aligned with the Dockerfile and README instructions.
+# Download: https://docs.flutter.dev/get-started/install
+# Required SDK version: Flutter 3.19.6

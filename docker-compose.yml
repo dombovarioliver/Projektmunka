@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   sql:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -44,6 +42,20 @@ services:
     command: ["dotnet", "DiplomaFit.Api.dll", "/seed"]
     volumes:
       - ./docs:/docs
+    
+  demo-web:
+    build:
+      context: ./Frontend/demo_app
+      dockerfile: Dockerfile
+      args:
+        API_BASE_URL: http://api:8080/api
+    container_name: diploma-demo-web
+    depends_on:
+      - api
+    ports:
+      - "8081:80"
+    networks:
+      - diplomanet
 
 
 networks:

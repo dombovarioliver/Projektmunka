@@ -1,0 +1,19 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.melody.json
+build/
+# Symbolication related
+app.*.symbols
+# Obfuscation related
+app.*.map.json
+# Android Studio
+**/android/local.properties
+# VS Code
+.vscode/
+# Xcode
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Pods/
+**/ios/.symlinks/
