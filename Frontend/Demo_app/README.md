@@ -5,7 +5,7 @@ Egy egyszerű Flutter alkalmazás, amelyen keresztül az elkészült funkciók A
 ## Követelmények
 - Flutter 3.16+ SDK
 - Android/iOS/Web futtatókörnyezet
-- Futtatás előtt a backend API-nak elérhetőnek kell lennie (Docker Compose vagy saját futtatás)
+- Futás előtt a backend API-nak elérhetőnek kell lennie (Docker Compose vagy saját futtatás)
 
 ## Backend indítása (Docker Compose)
 1. Lépj a repository gyökerébe: `cd /workspace/Projektmunka`.
@@ -38,7 +38,7 @@ Egy egyszerű Flutter alkalmazás, amelyen keresztül az elkészült funkciók A
    ```
    flutter run -d chrome
    ```
-   Mobilhoz használj csatlakoztatott eszközt vagy emulátort (pl. `flutter devices` → `flutter run -d <deviceId>`).
+   Mobilhoz használj csatlakoztatott eszközt vagy emulátort (pl. `flutter devices` majd `flutter run -d <deviceId>`).
 
 ### Android (emulátor / eszköz)
 - **Base URL**: a kód alapból Android emulátorra optimalizált (`http://10.0.2.2:8080/api`).

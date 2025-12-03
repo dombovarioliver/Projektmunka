@@ -11,6 +11,8 @@ const String _defaultBaseUrl = String.fromEnvironment(
       kIsWeb ? 'http://localhost:8080/api' : 'http://10.0.2.2:8080/api',
 );
 
+const _requestTimeout = Duration(seconds: 15);
+
 class ApiClient {
   ApiClient({this.baseUrl = _defaultBaseUrl, http.Client? client})
       : _client = client ?? http.Client();
@@ -28,7 +30,7 @@ class ApiClient {
     final uri = feature.buildUri(baseUrl, forStatus: true);
 
     try {
-      final response = await _client.get(uri);
+      final response = await _client.get(uri).timeout(_requestTimeout);
       return _parseBody(
         response,
         fallback: 'Állapot lekérdezve (${response.statusCode}).',
@@ -70,38 +72,65 @@ class ApiClient {
 
     switch (method) {
       case HttpMethod.post:
-        return _client.post(uri, headers: headers, body: body);
+        return _client
+            .post(uri, headers: headers, body: body)
+            .timeout(_requestTimeout);
       case HttpMethod.put:
-        return _client.put(uri, headers: headers, body: body);
+        return _client
+            .put(uri, headers: headers, body: body)
+            .timeout(_requestTimeout);
       case HttpMethod.delete:
-        return _client.delete(uri, headers: headers, body: body);
+        return _client
+            .delete(uri, headers: headers, body: body)
+            .timeout(_requestTimeout);
       case HttpMethod.get:
-        return _client.get(uri, headers: headers);
+        return _client.get(uri, headers: headers).timeout(_requestTimeout);
     }
   }
 
   ApiResponse _parseBody(http.Response response, {required String fallback}) {
+    final isError = response.statusCode >= 400;
     if (response.body.isEmpty) {
-      return ApiResponse(message: fallback);
+      final emptyMessage = isError
+          ? 'Hiba (${response.statusCode}): ${response.reasonPhrase ?? fallback}'
+          : fallback;
+      return ApiResponse(message: emptyMessage);
     }
 
     try {
       final decoded = jsonDecode(response.body);
       if (decoded is Map<String, dynamic>) {
         final map = decoded.cast<String, dynamic>();
-        final message =
-            (map['message'] ?? map['status'] ?? fallback).toString();
-        return ApiResponse(message: message, data: map);
+        final message = (map['message'] ??
+                map['status'] ??
+                map['error'] ??
+                map['detail'] ??
+                map['title'] ??
+                fallback)
+            .toString();
+        final resolvedMessage = isError
+            ? 'Hiba (${response.statusCode}): $message'
+            : message;
+        return ApiResponse(message: resolvedMessage, data: map);
       }
       if (decoded is List<dynamic>) {
+        final resolvedMessage = isError
+            ? 'Hiba (${response.statusCode}): Lista érkezett a szervertől.'
+            : 'Lista érkezett a szervertől.';
         return ApiResponse(
-          message: 'Lista érkezett a szervertől.',
+          message: resolvedMessage,
           data: {'items': decoded},
         );
       }
-      return ApiResponse(message: decoded.toString());
+      final resolvedMessage = isError
+          ? 'Hiba (${response.statusCode}): $decoded'
+          : decoded.toString();
+      return ApiResponse(message: resolvedMessage);
     } catch (_) {
-      return ApiResponse(message: response.body);
+      final resolvedMessage = isError
+          ? 'Hiba (${response.statusCode}): ${response.body}'
+          : response.body;
+      return ApiResponse(message: resolvedMessage);
     }
   }
 

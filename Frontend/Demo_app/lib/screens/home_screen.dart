@@ -25,7 +25,15 @@ class _HomeScreenState extends State<HomeScreen> {
     _apiClient = ApiClient();
     _features = _buildFeatureList();
     for (final feature in _features) {
-      _statusFutures[feature.path] = _refreshStatus(feature);
+      if (feature.statusPath != null) {
+        _statusFutures[feature.path] = _refreshStatus(feature);
+      } else {
+        _statusFutures[feature.path] = Future.value(
+          const ApiResponse(
+            message: 'Nincs állapot végpont, futtasd a műveletet.',
+          ),
+        );
+      }
     }
   }
 
@@ -98,13 +106,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<ApiResponse> _refreshStatus(FeatureAction feature) {
-    final future = feature.statusPath == null
-        ? Future.value(
-            const ApiResponse(
-              message: 'Nincs állapot végpont, futtasd a műveletet.',
-            ),
-          )
-        : _apiClient.fetchStatus(feature);
+    if (feature.statusPath == null) {
+      return Future.value(
+        const ApiResponse(
+          message: 'Nincs állapot végpont, futtasd a műveletet.',
+        ),
+      );
+    }
+
+    final future = _apiClient.fetchStatus(feature);
     setState(() {
       _statusFutures[feature.path] = future;
     });

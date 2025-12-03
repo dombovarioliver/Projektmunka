@@ -20,7 +20,7 @@ class FeatureAction {
   final String? statusPath;
   final Map<String, dynamic>? payload;
   final Future<Map<String, dynamic>?> Function(BuildContext context)?
-  payloadBuilder;
+      payloadBuilder;
   final HttpMethod method;
   final String actionLabel;
 

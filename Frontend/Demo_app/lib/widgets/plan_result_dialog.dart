@@ -46,8 +46,7 @@ class PlanResultDialog extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
-              if (dietPlan != null)
-                _PlanSection(title: 'Étrend', data: dietPlan!),
+              if (dietPlan != null) _PlanSection(title: 'Étrend', data: dietPlan!),
               if (dietPlan != null && workoutPlan != null)
                 const SizedBox(height: 12),
               if (workoutPlan != null)
