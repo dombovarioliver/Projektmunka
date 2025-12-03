@@ -1,5 +1,6 @@
 ﻿using DiplomaFit.Api.Application.Dtos.Cases;
 using DiplomaFit.Api.Application.Dtos.Diet;
+using DiplomaFit.Api.Application.Dtos.Planning;
 using DiplomaFit.Api.Application.Dtos.Workout;
 using DiplomaFit.Api.Application.Interfaces;
 using DiplomaFit.Api.Domain.Entities;
@@ -38,7 +39,56 @@ namespace DiplomaFit.Api.Controllers
             [FromBody] CreateCaseRequestDto request,
             CancellationToken ct)
         {
-            // 1) Új case létrehozása és mentése
+            var caseId = await CreateCaseAsync(request, ct);
+
+            // 2) ML meghívása + DietPlan létrehozása / frissítése ehhez a case-hez
+            await _mlDietPlanService.GenerateOrUpdatePlanForCaseAsync(caseId, ct);
+
+            // 3) Heti étrend generálása a létrehozott plan alapján
+            var weeklyPlan = await _dietPlanService.GenerateWeeklyPlanAsync(caseId);
+
+            return Ok(weeklyPlan);
+        }
+
+        /// <summary>
+        /// Étrend és edzésterv generálása külön diet + workout inputok alapján.
+        /// </summary>
+        [HttpPost("generate-diet-and-workout-plans")]
+        [ProducesResponseType(typeof(CombinedPlanResponseDto), StatusCodes.Status200OK)]
+        public async Task<ActionResult<CombinedPlanResponseDto>> GenerateDietAndWorkoutPlans(
+            [FromBody] CombinedPlanRequestDto request,
+            CancellationToken ct)
+        {
+            if (request?.DietInputs == null || request.WorkoutInputs == null)
+            {
+                return BadRequest("DietInputs és WorkoutInputs megadása kötelező.");
+            }
+
+            var caseId = await CreateCaseAsync(request.DietInputs, ct);
+
+            await _mlDietPlanService.GenerateOrUpdatePlanForCaseAsync(caseId, ct);
+            var weeklyDietPlan = await _dietPlanService.GenerateWeeklyPlanAsync(caseId);
+
+            var weeklyWorkoutPlan = await _workoutPlanService.GenerateWeeklyPlanAsync(request.WorkoutInputs, ct);
+
+            return Ok(new CombinedPlanResponseDto
+            {
+                DietPlan = weeklyDietPlan,
+                WorkoutPlan = weeklyWorkoutPlan
+            });
+        }
+
+        [HttpPost("workout/weekly-workout-plan")]
+        public async Task<ActionResult<WeeklyWorkoutPlanDto>> GenerateWeeklyWorkoutPlan(
+            [FromBody] WorkoutPlanRequestDto request,
+            CancellationToken ct)
+        {
+            var result = await _workoutPlanService.GenerateWeeklyPlanAsync(request, ct);
+            return Ok(result);
+        }
+
+        private async Task<Guid> CreateCaseAsync(CreateCaseRequestDto request, CancellationToken ct)
+        {
             var caseEntity = new Case
             {
                 CaseId = Guid.NewGuid(),
@@ -51,28 +101,12 @@ namespace DiplomaFit.Api.Controllers
                 GoalType = request.GoalType,
                 GoalDeltaKg = request.GoalDeltaKg,
                 GoalTimeWeeks = request.GoalTimeWeeks
-                // PlanId-t nem töltjük, majd ML után
             };
 
             _db.Cases.Add(caseEntity);
             await _db.SaveChangesAsync(ct);
 
-            // 2) ML meghívása + DietPlan létrehozása / frissítése ehhez a case-hez
-            await _mlDietPlanService.GenerateOrUpdatePlanForCaseAsync(caseEntity.CaseId, ct);
-
-            // 3) Heti étrend generálása a létrehozott plan alapján
-            var weeklyPlan = await _dietPlanService.GenerateWeeklyPlanAsync(caseEntity.CaseId);
-
-            return Ok(weeklyPlan);
-        }
-
-        [HttpPost("workout/weekly-workout-plan")]
-        public async Task<ActionResult<WeeklyWorkoutPlanDto>> GenerateWeeklyWorkoutPlan(
-            [FromBody] WorkoutPlanRequestDto request,
-            CancellationToken ct)
-        {
-            var result = await _workoutPlanService.GenerateWeeklyPlanAsync(request, ct);
-            return Ok(result);
+            return caseEntity.CaseId;
         }
     }
 }

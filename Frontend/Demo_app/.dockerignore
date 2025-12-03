@@ -1,10 +1,10 @@
 .dart_tool
 build
 .idea
-android
-ios
-macos
-linux
-windows
-test
-.pub-cache
+.git
+.test
+.android
+.ios
+.macos
+.windows
+.linux

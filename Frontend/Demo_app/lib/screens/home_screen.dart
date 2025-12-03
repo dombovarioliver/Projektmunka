@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/feature_action.dart';
 import '../services/api_client.dart';
 import '../widgets/feature_card.dart';
+import '../widgets/plan_input_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,8 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<FeatureAction> _buildFeatureList() {
-    return const [
-      FeatureAction(
+    return [
+      const FeatureAction(
         title: 'Étrend import',
         description:
             'Plan.csv és Case.csv betöltése a konténer docs mappájából.',
@@ -43,14 +44,14 @@ class _HomeScreenState extends State<HomeScreen> {
         method: HttpMethod.post,
         actionLabel: 'Importálás',
       ),
-      FeatureAction(
+      const FeatureAction(
         title: 'Alap ételek import',
         description: 'Foods.csv betöltése a diet modulhoz.',
         path: '/import/foods?path=/docs/Diet/Foods.csv',
         method: HttpMethod.post,
         actionLabel: 'Importálás',
       ),
-      FeatureAction(
+      const FeatureAction(
         title: 'Gyakorlatok import',
         description: 'Exercises.csv betöltése az edzés modulhoz.',
         path: '/import/exercises?path=/docs/Workout/Exercises.csv',
@@ -59,38 +60,34 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       FeatureAction(
         title: 'Heti étrend generálása',
-        description:
-            'Új case létrehozása, ML hívás és heti étrend generálása mintával.',
+        description: 'Adj meg diet adatokat, majd generáljuk a heti étrendet.',
         path: '/planning/generate-weekly-diet-plan',
+        payloadBuilder: (context) => PlanInputDialog.show(
+          context,
+          includeWorkout: false,
+        ).then((result) => result?['dietInputs'] as Map<String, dynamic>?),
         statusPath:
             '/diet/cases/e35dc5ec-2bc0-4b33-a347-595e9b19d7d6/weekly-plan',
-        payload: {
-          'gender': 0,
-          'age': 30,
-          'heightCm': 180,
-          'weightKg': 82.5,
-          'bodyfatPercent': 18,
-          'activityLevel': 3,
-          'goalType': 1,
-          'goalDeltaKg': 5,
-          'goalTimeWeeks': 8,
-        },
         method: HttpMethod.post,
         actionLabel: 'Generálás',
       ),
       FeatureAction(
         title: 'Heti edzésterv generálása',
-        description: 'Minta paraméterekkel heti edzésterv készítése.',
+        description: 'Állítsd be a szükséges paramétereket a heti edzéshez.',
         path: '/planning/workout/weekly-workout-plan',
-        payload: {
-          'gender': 0,
-          'age': 28,
-          'goal_type': 2,
-          'activity_level': 3,
-          'experience': 2,
-          'days_per_week': 4,
-          'equipment_level': 1,
-        },
+        payloadBuilder: (context) => PlanInputDialog.show(
+          context,
+          includeDiet: false,
+        ).then((result) => result?['workoutInputs'] as Map<String, dynamic>?),
+        method: HttpMethod.post,
+        actionLabel: 'Generálás',
+      ),
+      FeatureAction(
+        title: 'Étrend + edzésterv generálása',
+        description:
+            'Kérd be külön a diet és workout inputokat és egy lépésben generáljuk mindkettőt.',
+        path: '/planning/generate-diet-and-workout-plans',
+        payloadBuilder: (context) => PlanInputDialog.show(context),
         method: HttpMethod.post,
         actionLabel: 'Generálás',
       ),
@@ -106,7 +103,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _triggerAction(FeatureAction feature) async {
-    final future = _apiClient.triggerAction(feature);
+    final payload = feature.payloadBuilder != null
+        ? await feature.payloadBuilder!(context)
+        : null;
+    if (feature.payloadBuilder != null && payload == null) {
+      return;
+    }
+
+    final future = _apiClient.triggerAction(
+      feature,
+      payloadOverride: payload ?? feature.payload,
+    );
     setState(() {
       _statusFutures[feature.path] = future;
     });
@@ -115,18 +122,16 @@ class _HomeScreenState extends State<HomeScreen> {
     if (!mounted) return;
     if (result.isNotEmpty) {
       // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(result)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(result)));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Funkció bemutató'),
-      ),
+      appBar: AppBar(title: const Text('Funkció bemutató')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView.separated(

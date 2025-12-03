@@ -7,15 +7,14 @@ import '../models/feature_action.dart';
 
 const String _defaultBaseUrl = String.fromEnvironment(
   'API_BASE_URL',
-  defaultValue:
-      kIsWeb ? 'http://localhost:8080/api' : 'http://10.0.2.2:8080/api',
+  defaultValue: kIsWeb
+      ? 'http://localhost:8080/api'
+      : 'http://10.0.2.2:8080/api',
 );
 
 class ApiClient {
-  ApiClient({
-    this.baseUrl = _defaultBaseUrl,
-    http.Client? client,
-  }) : _client = client ?? http.Client();
+  ApiClient({this.baseUrl = _defaultBaseUrl, http.Client? client})
+    : _client = client ?? http.Client();
 
   final String baseUrl;
   final http.Client _client;
@@ -29,20 +28,26 @@ class ApiClient {
 
     try {
       final response = await _client.get(uri);
-      return _parseBody(response,
-          fallback: 'Állapot lekérdezve (${response.statusCode}).');
+      return _parseBody(
+        response,
+        fallback: 'Állapot lekérdezve (${response.statusCode}).',
+      );
     } catch (error, stackTrace) {
       debugPrint('Status fetch failed: $error\n$stackTrace');
       return 'Nem sikerült lekérdezni: $error';
     }
   }
 
-  Future<String> triggerAction(FeatureAction feature) async {
+  Future<String> triggerAction(
+    FeatureAction feature, {
+    Map<String, dynamic>? payloadOverride,
+  }) async {
+    final uri = feature.buildUri(baseUrl);
+    final payload = payloadOverride ?? feature.payload;
     final uri = feature.buildUri(baseUrl);
 
     try {
-      final response =
-          await _switchRequest(uri, feature.method, feature.payload);
+      final response = await _switchRequest(uri, feature.method, payload);
 
       return _parseBody(
         response,

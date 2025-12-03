@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 enum HttpMethod { get, post, put, delete }
 
 class FeatureAction {
@@ -7,6 +9,7 @@ class FeatureAction {
     required this.path,
     this.statusPath,
     this.payload,
+    this.payloadBuilder,
     this.method = HttpMethod.get,
     this.actionLabel = 'Futtatás',
   });
@@ -16,6 +19,8 @@ class FeatureAction {
   final String path;
   final String? statusPath;
   final Map<String, dynamic>? payload;
+  final Future<Map<String, dynamic>?> Function(BuildContext context)?
+  payloadBuilder;
   final HttpMethod method;
   final String actionLabel;
 

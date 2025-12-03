@@ -166,6 +166,8 @@ docker-compose.override.yml
 
 ehthumbs.db
 Desktop.ini
+.zip
+*.zip
 
 
 # ===============================

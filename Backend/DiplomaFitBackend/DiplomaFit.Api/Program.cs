@@ -46,6 +46,15 @@ namespace DiplomaFit.Api
                 client.BaseAddress = new Uri(baseUrl);
             });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                    policy
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
             var app = builder.Build();
 
             //Swagger mindig menjen (Dockerben is)
@@ -54,6 +63,8 @@ namespace DiplomaFit.Api
 
             // ❌ Egyelőre kikapcsoljuk a HTTPS redirectet konténerben
             // app.UseHttpsRedirection();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
