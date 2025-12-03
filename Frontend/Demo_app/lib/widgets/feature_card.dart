@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-
+import '../models/api_response.dart';
 import '../models/feature_action.dart';
 
 class FeatureCard extends StatelessWidget {
   const FeatureCard({
     super.key,
     required this.feature,
+    required this.statusEnabled,
     required this.statusFuture,
     required this.onRun,
     required this.onRefresh,
   });
 
   final FeatureAction feature;
-  final Future<String> statusFuture;
+  final bool statusEnabled;
+  final Future<ApiResponse> statusFuture;
   final VoidCallback onRun;
   final VoidCallback onRefresh;
 
@@ -45,9 +47,13 @@ class FeatureCard extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: 12),
-            FutureBuilder<String>(
+            FutureBuilder<ApiResponse>(
               future: statusFuture,
               builder: (context, snapshot) {
+                if (!statusEnabled) {
+                  return const Text(
+                      'Nincs állapot végpont, futtasd a műveletet.');
+                }
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Row(
                     children: [
@@ -68,7 +74,7 @@ class FeatureCard extends StatelessWidget {
                         TextStyle(color: Theme.of(context).colorScheme.error),
                   );
                 }
-                final status = snapshot.data ?? 'Nincs válasz';
+                final status = snapshot.data?.message ?? 'Nincs válasz';
                 return Text(
                   status,
                   style:
@@ -81,7 +87,7 @@ class FeatureCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 OutlinedButton.icon(
-                  onPressed: onRefresh,
+                  onPressed: statusEnabled ? onRefresh : null,
                   icon: const Icon(Icons.refresh),
                   label: const Text('Állapot'),
                 ),

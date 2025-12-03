@@ -2,26 +2,27 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-
+import '../models/api_response.dart';
 import '../models/feature_action.dart';
 
 const String _defaultBaseUrl = String.fromEnvironment(
   'API_BASE_URL',
-  defaultValue: kIsWeb
-      ? 'http://localhost:8080/api'
-      : 'http://10.0.2.2:8080/api',
+  defaultValue:
+      kIsWeb ? 'http://localhost:8080/api' : 'http://10.0.2.2:8080/api',
 );
 
 class ApiClient {
   ApiClient({this.baseUrl = _defaultBaseUrl, http.Client? client})
-    : _client = client ?? http.Client();
+      : _client = client ?? http.Client();
 
   final String baseUrl;
   final http.Client _client;
 
-  Future<String> fetchStatus(FeatureAction feature) async {
+  Future<ApiResponse> fetchStatus(FeatureAction feature) async {
     if (feature.statusPath == null) {
-      return 'Nincs állapot végpont, futtasd a műveletet.';
+      return const ApiResponse(
+        message: 'Nincs állapot végpont, futtasd a műveletet.',
+      );
     }
 
     final uri = feature.buildUri(baseUrl, forStatus: true);
@@ -34,17 +35,16 @@ class ApiClient {
       );
     } catch (error, stackTrace) {
       debugPrint('Status fetch failed: $error\n$stackTrace');
-      return 'Nem sikerült lekérdezni: $error';
+      return ApiResponse(message: 'Nem sikerült lekérdezni: $error');
     }
   }
 
-  Future<String> triggerAction(
+  Future<ApiResponse> triggerAction(
     FeatureAction feature, {
     Map<String, dynamic>? payloadOverride,
   }) async {
     final uri = feature.buildUri(baseUrl);
     final payload = payloadOverride ?? feature.payload;
-    final uri = feature.buildUri(baseUrl);
 
     try {
       final response = await _switchRequest(uri, feature.method, payload);
@@ -55,7 +55,7 @@ class ApiClient {
       );
     } catch (error, stackTrace) {
       debugPrint('Action failed: $error\n$stackTrace');
-      return 'Nem sikerült végrehajtani: $error';
+      return ApiResponse(message: 'Nem sikerült végrehajtani: $error');
     }
   }
 
@@ -80,19 +80,28 @@ class ApiClient {
     }
   }
 
-  String _parseBody(http.Response response, {required String fallback}) {
+  ApiResponse _parseBody(http.Response response, {required String fallback}) {
     if (response.body.isEmpty) {
-      return fallback;
+      return ApiResponse(message: fallback);
     }
 
     try {
       final decoded = jsonDecode(response.body);
-      if (decoded is Map<String, dynamic> && decoded['message'] is String) {
-        return decoded['message'] as String;
+      if (decoded is Map<String, dynamic>) {
+        final map = decoded.cast<String, dynamic>();
+        final message =
+            (map['message'] ?? map['status'] ?? fallback).toString();
+        return ApiResponse(message: message, data: map);
       }
-      return decoded.toString();
+      if (decoded is List<dynamic>) {
+        return ApiResponse(
+          message: 'Lista érkezett a szervertől.',
+          data: {'items': decoded},
+        );
+      }
+      return ApiResponse(message: decoded.toString());
     } catch (_) {
-      return response.body;
+      return ApiResponse(message: response.body);
     }
   }
 

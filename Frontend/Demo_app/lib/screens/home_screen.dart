@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../models/api_response.dart';
 import '../models/feature_action.dart';
 import '../services/api_client.dart';
 import '../widgets/feature_card.dart';
 import '../widgets/plan_input_dialog.dart';
+import '../widgets/plan_result_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late final ApiClient _apiClient;
   late final List<FeatureAction> _features;
-  final Map<String, Future<String>> _statusFutures = {};
+  final Map<String, Future<ApiResponse>> _statusFutures = {};
 
   @override
   void initState() {
@@ -23,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _apiClient = ApiClient();
     _features = _buildFeatureList();
     for (final feature in _features) {
-      _statusFutures[feature.path] = _apiClient.fetchStatus(feature);
+      _statusFutures[feature.path] = _refreshStatus(feature);
     }
   }
 
@@ -35,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<FeatureAction> _buildFeatureList() {
     return [
+      /*
       const FeatureAction(
         title: 'Étrend import',
         description:
@@ -82,20 +85,26 @@ class _HomeScreenState extends State<HomeScreen> {
         method: HttpMethod.post,
         actionLabel: 'Generálás',
       ),
+      */
       FeatureAction(
         title: 'Étrend + edzésterv generálása',
-        description:
-            'Kérd be külön a diet és workout inputokat és egy lépésben generáljuk mindkettőt.',
+        description: 'Add meg külön a diet és workout inputokat',
         path: '/planning/generate-diet-and-workout-plans',
         payloadBuilder: (context) => PlanInputDialog.show(context),
         method: HttpMethod.post,
-        actionLabel: 'Generálás',
+        actionLabel: 'Kattints a generáláshoz',
       ),
     ];
   }
 
-  Future<String> _refreshStatus(FeatureAction feature) {
-    final future = _apiClient.fetchStatus(feature);
+  Future<ApiResponse> _refreshStatus(FeatureAction feature) {
+    final future = feature.statusPath == null
+        ? Future.value(
+            const ApiResponse(
+              message: 'Nincs állapot végpont, futtasd a műveletet.',
+            ),
+          )
+        : _apiClient.fetchStatus(feature);
     setState(() {
       _statusFutures[feature.path] = future;
     });
@@ -120,12 +129,51 @@ class _HomeScreenState extends State<HomeScreen> {
 
     final result = await future;
     if (!mounted) return;
-    if (result.isNotEmpty) {
+
+    final dietPlan = _extractPlan(result.data, const [
+      'dietPlan',
+      'diet_plan',
+      'diet',
+      'dietPlanResponse',
+    ]);
+    final workoutPlan = _extractPlan(result.data, const [
+      'workoutPlan',
+      'workout_plan',
+      'workout',
+      'workoutPlanResponse',
+    ]);
+
+    if (dietPlan != null || workoutPlan != null) {
+      // ignore: use_build_context_synchronously
+      await PlanResultDialog.show(
+        context,
+        message: result.message,
+        dietPlan: dietPlan,
+        workoutPlan: workoutPlan,
+      );
+    } else if (result.message.isNotEmpty) {
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(result)));
+      ).showSnackBar(SnackBar(content: Text(result.message)));
     }
+  }
+
+  Map<String, dynamic>? _extractPlan(
+    Map<String, dynamic>? data,
+    List<String> possibleKeys,
+  ) {
+    if (data == null) return null;
+    for (final key in possibleKeys) {
+      final value = data[key];
+      if (value is Map<String, dynamic>) {
+        return value;
+      }
+      if (value is List<dynamic>) {
+        return {'items': value};
+      }
+    }
+    return null;
   }
 
   @override
@@ -144,6 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             return FeatureCard(
               feature: feature,
+              statusEnabled: feature.statusPath != null,
               statusFuture: statusFuture,
               onRefresh: () => _refreshStatus(feature),
               onRun: () => _triggerAction(feature),

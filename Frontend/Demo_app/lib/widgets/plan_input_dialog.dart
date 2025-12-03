@@ -39,20 +39,20 @@ class PlanInputDialog extends StatefulWidget {
 class _PlanInputDialogState extends State<PlanInputDialog> {
   static const Map<String, dynamic> _defaultDietValues = {
     'gender': 0,
-    'age': 30,
+    'age': 20,
     'heightCm': 180,
-    'weightKg': 82.5,
-    'bodyfatPercent': 18,
+    'weightKg': 90,
+    'bodyfatPercent': 0,
     'activityLevel': 3,
-    'goalType': 1,
-    'goalDeltaKg': 5,
-    'goalTimeWeeks': 8,
+    'goalType': 0,
+    'goalDeltaKg': 0,
+    'goalTimeWeeks': 0,
   };
 
   static const Map<String, dynamic> _defaultWorkoutValues = {
     'gender': 0,
-    'age': 28,
-    'goal_type': 2,
+    'age': 20,
+    'goal_type': 0,
     'activity_level': 3,
     'experience': 2,
     'days_per_week': 4,
@@ -145,7 +145,25 @@ class _PlanInputDialogState extends State<PlanInputDialog> {
         _numberField(_dietControllers['weightKg']!, 'Testsúly (kg)'),
         _numberField(_dietControllers['bodyfatPercent']!, 'Testzsír százalék'),
         _numberField(_dietControllers['activityLevel']!, 'Aktivitási szint'),
+        _helperBox(
+          'Aktivitási szint skála (1-5):',
+          const [
+            '1 = ülő életmód, alig van mozgás',
+            '2 = enyhén aktív, heti pár könnyű séta/munka',
+            '3 = közepesen aktív, heti több alkalommal mozog',
+            '4 = nagyon aktív, mindennapos edzés vagy fizikai munka',
+            '5 = extrém aktív, intenzív edzés/versenysport',
+          ],
+        ),
         _numberField(_dietControllers['goalType']!, 'Cél típus'),
+        _helperBox(
+          'Cél típus értékek:',
+          const [
+            '0 = testsúly megtartása',
+            '1 = fogyás',
+            '2 = tömegnövelés / izomépítés',
+          ],
+        ),
         _numberField(
           _dietControllers['goalDeltaKg']!,
           'Cél tömeg változás (kg)',
@@ -175,16 +193,64 @@ class _PlanInputDialogState extends State<PlanInputDialog> {
           _workoutControllers['activity_level']!,
           'Aktivitási szint',
         ),
+        _helperBox(
+          'Aktivitási szint skála (1-5):',
+          const [
+            '1 = ülő életmód, alig van mozgás',
+            '2 = enyhén aktív, heti pár könnyű séta/munka',
+            '3 = közepesen aktív, heti több alkalommal mozog',
+            '4 = nagyon aktív, mindennapos edzés vagy fizikai munka',
+            '5 = extrém aktív, intenzív edzés/versenysport',
+          ],
+        ),
         _numberField(_workoutControllers['experience']!, 'Tapasztalat'),
+        _helperBox(
+          'Tapasztalat szintek:',
+          const [
+            '0 = kezdő (kevesebb mint 6 hónap rendszeres edzés)',
+            '1 = középhaladó (6-24 hónap következetes edzés)',
+            '2 = haladó (több mint 2 év folyamatos edzés)',
+          ],
+        ),
         _numberField(
           _workoutControllers['days_per_week']!,
           'Edzésnapok hetente',
         ),
         _numberField(
           _workoutControllers['equipment_level']!,
-          'Eszközök elérhetősége',
+          'Eszközök elérhetősége (Konditerem = 1, Otthoni = 0)',
         ),
       ],
+    );
+  }
+
+  Widget _helperBox(String title, List<String> lines) {
+    final textTheme = Theme.of(context).textTheme;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surfaceVariant,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title,
+                style: textTheme.bodyMedium
+                    ?.copyWith(fontWeight: FontWeight.w600)),
+            const SizedBox(height: 4),
+            ...lines.map(
+              (line) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 2),
+                child: Text('• $line', style: textTheme.bodySmall),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
