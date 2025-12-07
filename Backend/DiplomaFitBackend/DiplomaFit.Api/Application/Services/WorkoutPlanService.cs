@@ -39,7 +39,7 @@ namespace DiplomaFit.Api.Application.Services
                 return restOnly;
             }
 
-            // 1) ML-ből kérünk splitet
+            //ML-ből kérünk splitet
             var split = await _mlClient.PredictSplitAsync(request, ct);
 
             var plan = new WeeklyWorkoutPlanDto
@@ -48,7 +48,7 @@ namespace DiplomaFit.Api.Application.Services
                 DaysPerWeek = request.DaysPerWeek
             };
 
-            // 2) Split logika
+            //Split logika
             switch (split.SplitName)
             {
                 case "PushPullLegs":
@@ -63,7 +63,7 @@ namespace DiplomaFit.Api.Application.Services
                     break;
             }
 
-            // Ha valamiért kevesebb mint 7 napot tettünk bele, töltsük fel Resttel
+            // Ha kevesebb mint 7 napot tettünk bele, töltsük fel Resttel
             for (int i = plan.Days.Count + 1; i <= 7; i++)
             {
                 plan.Days.Add(CreateRestDay(i));
@@ -72,12 +72,6 @@ namespace DiplomaFit.Api.Application.Services
             return plan;
         }
 
-        // --- SPLIT GENERÁLÓK ---
-
-        /// <summary>
-        /// Push–Pull–Legs split:
-        /// P – Pu – L – Rest, majd ismétlődik, max. DaysPerWeek edzésnappal.
-        /// </summary>
         private void GeneratePplSplit(WeeklyWorkoutPlanDto plan, WorkoutPlanRequestDto request)
         {
             int targetWorkouts = Math.Clamp(request.DaysPerWeek, 0, 6);
@@ -130,11 +124,6 @@ namespace DiplomaFit.Api.Application.Services
             }
         }
 
-        /// <summary>
-        /// Upper–Lower split:
-        /// Upper – Lower – Rest, majd ismétlődik, max. DaysPerWeek edzésnappal.
-        /// (Így minden UL blokk után 1 pihenőnap, a hét végén lesz extra Rest.)
-        /// </summary>
         private void GenerateUpperLowerSplit(WeeklyWorkoutPlanDto plan, WorkoutPlanRequestDto request)
         {
             int targetWorkouts = Math.Clamp(request.DaysPerWeek, 0, 6);
@@ -175,11 +164,6 @@ namespace DiplomaFit.Api.Application.Services
             }
         }
 
-        /// <summary>
-        /// Full body split:
-        /// FullBody – Rest ciklus, max. DaysPerWeek edzésnappal.
-        /// Minden teljes testes nap után legalább 1 pihenőnap.
-        /// </summary>
         private void GenerateFullBodySplit(WeeklyWorkoutPlanDto plan, WorkoutPlanRequestDto request)
         {
             int targetWorkouts = Math.Clamp(request.DaysPerWeek, 0, 4);
@@ -208,7 +192,7 @@ namespace DiplomaFit.Api.Application.Services
             }
         }
 
-        // --- NAPI SÉMÁK ---
+        //Sémák
 
         private WorkoutDayDto CreateRestDay(int dayIndex) =>
             new WorkoutDayDto
@@ -226,32 +210,26 @@ namespace DiplomaFit.Api.Application.Services
                 DayType = "Push"
             };
 
-            // 1. Két mellnyomás (sima/döntött, gép, stb.) – PRIORITÁS: compound press
             var pressPicked = PickChestPresses(2, request);
             if (!pressPicked.Any())
             {
-                // ha valamiért még sincs compound chest, essünk vissza izolációkra
                 var chestFallback = PickExercises("chest", "Push", request, isCompound: false, count: 2)
                     .ToList();
                 pressPicked = chestFallback;
             }
             day.Exercises.AddRange(pressPicked);
 
-            // --- a további rész maradhat, amit korábban írtunk ---
-            // 2. 1–2 tricepsz
             var trisAll = PickExercises("triceps", "Push", request, isCompound: false, count: 3)
                 .ToList();
             var trisPicked = TrimList(trisAll, minCount: 1, maxCount: 2);
             day.Exercises.AddRange(trisPicked);
 
-            // 3. Elülső váll
             var frontDelt = PickExercises("shoulders", "Push", request,
                 isCompound: false, count: 2, subgroup: "shoulders_front")
                 .FirstOrDefault();
             if (frontDelt != null)
                 day.Exercises.Add(frontDelt);
 
-            // 4. Oldalsó váll – FIGYELEM: CSV-ben shoulders_side az érték!
             var sideDelt = PickExercises("shoulders", "Push", request,
                 isCompound: false, count: 2, subgroup: "shoulders_side")
                 .FirstOrDefault();
@@ -269,7 +247,6 @@ namespace DiplomaFit.Api.Application.Services
                 DayType = "Pull"
             };
 
-            // 1. Lehúzás / húzódzkodás – vertikális húzás (pl. lat pull, pull-up)
             var verticalBack = _dbContext.Exercises.AsNoTracking()
                 .Where(e => e.PrimaryMuscleGroup == "back"
                             && e.PushPullCategory == "Pull"
@@ -303,13 +280,11 @@ namespace DiplomaFit.Api.Application.Services
             if (horizontalPick != null)
                 day.Exercises.Add(horizontalPick);
 
-            // 3. 1–2 bicepsz
             var bicepsAll = PickExercises("biceps", "Pull", request, isCompound: false, count: 3)
                 .ToList();
             var bicepsPicked = TrimList(bicepsAll, minCount: 1, maxCount: 2);
             day.Exercises.AddRange(bicepsPicked);
 
-            // 4. 1 hátsó váll
             var rearDelt = PickExercises("shoulders", "Pull", request, isCompound: false, count: 2, subgroup: "shoulders_rear")
                 .FirstOrDefault();
             if (rearDelt != null)
@@ -338,14 +313,12 @@ namespace DiplomaFit.Api.Application.Services
                 DayType = "Upper"
             };
 
-            // 1–2 hát
             var backComp = PickExercises("back", "Pull", request, isCompound: true, count: 2).ToList();
             var backIso = PickExercises("back", "Pull", request, isCompound: false, count: 2).ToList();
             var backAll = backComp.Concat(backIso).ToList();
             backAll = TrimList(backAll, minCount: 1, maxCount: 2);
             day.Exercises.AddRange(backAll);
 
-            // 1–2 mell – PRIORITÁS: compound press
             var chestPresses = PickChestPresses(2, request);
             if (!chestPresses.Any())
             {
@@ -359,24 +332,21 @@ namespace DiplomaFit.Api.Application.Services
             }
             day.Exercises.AddRange(chestPresses);
 
-            // 1 tricepsz
             var tri = PickExercises("triceps", "Push", request, isCompound: false, count: 2)
                 .FirstOrDefault();
             if (tri != null)
                 day.Exercises.Add(tri);
 
-            // 1 bicepsz
             var bi = PickExercises("biceps", "Pull", request, isCompound: false, count: 2)
                 .FirstOrDefault();
             if (bi != null)
                 day.Exercises.Add(bi);
 
-            // 1–1 váll (első, oldalsó, hátsó)
             var frontDelt = PickExercises("shoulders", "Push", request,
                 isCompound: false, count: 2, subgroup: "shoulders_front")
                 .FirstOrDefault();
             var sideDelt = PickExercises("shoulders", "Push", request,
-                isCompound: false, count: 2, subgroup: "shoulders_side") // fontos: side, nem lateral
+                isCompound: false, count: 2, subgroup: "shoulders_side")
                 .FirstOrDefault();
             var rearDelt = PickExercises("shoulders", "Pull", request,
                 isCompound: false, count: 2, subgroup: "shoulders_rear")
@@ -409,30 +379,24 @@ namespace DiplomaFit.Api.Application.Services
                 DayType = "FullBody"
             };
 
-            // 1 hát
             var back = PickExercises("back", "Pull", request, isCompound: true, count: 1).ToList();
             if (!back.Any())
             {
                 back = PickExercises("back", "Pull", request, isCompound: false, count: 1).ToList();
             }
 
-            // 1 mell
             var chest = PickExercises("chest", "Push", request, isCompound: true, count: 1).ToList();
             if (!chest.Any())
             {
                 chest = PickExercises("chest", "Push", request, isCompound: false, count: 1).ToList();
             }
 
-            // 1 összetett láb (guggolás/felhúzás jelleg – a CSV-ben lévő compound legs)
             var legs = PickExercises("legs", "Legs", request, isCompound: true, count: 1).ToList();
 
-            // 1 tricepsz
             var tri = PickExercises("triceps", "Push", request, isCompound: false, count: 1).ToList();
 
-            // 1 bicepsz
             var bi = PickExercises("biceps", "Pull", request, isCompound: false, count: 1).ToList();
 
-            // 1–1 váll (első, oldalsó, hátsó)
             var frontDelt = PickExercises("shoulders", "Push", request, isCompound: false, count: 1, subgroup: "shoulders_front")
                 .ToList();
             var sideDelt = PickExercises("shoulders", "Push", request, isCompound: false, count: 1, subgroup: "shoulders_side")
@@ -454,28 +418,23 @@ namespace DiplomaFit.Api.Application.Services
 
         private List<WorkoutExerciseDto> PickChestPresses(int maxCount, WorkoutPlanRequestDto request)
         {
-            // 1) Alap query az adatbázisban
             var query = _dbContext.Exercises.AsNoTracking()
                 .Where(e => e.PrimaryMuscleGroup == "chest"
                             && e.PushPullCategory == "Push"
                             && e.IsCompound);
 
-            // 2) Home-only szűrés
             if (request.EquipmentLevel == 0)
             {
                 query = query.Where(e => e.IsHomeFriendly);
             }
 
-            // 3) Ne legyen túl nehéz a tapasztalati szinthez képest
             query = query.Where(e => e.DifficultyLevel <= request.Experience + 1);
 
-            // 4) LEKÉRÉS A DB-BŐL – INNENTŐL MEMÓRIA
             var candidates = query.ToList();
 
             if (!candidates.Any())
                 return new List<WorkoutExerciseDto>();
 
-            // 5) Véletlen sorrend + limitálás MEMÓRIÁBAN
             var picked = candidates
                 .OrderBy(_ => _random.Next())
                 .Take(maxCount)
@@ -489,13 +448,11 @@ namespace DiplomaFit.Api.Application.Services
         {
             var exercises = new List<WorkoutExerciseDto>();
 
-            // 1) 1–2 összetett láb (guggolás / felhúzás / lábtoló / stb.)
             var compounds = PickExercises("legs", "Legs", request, isCompound: true, count: 5)
                 .ToList();
 
             if (!compounds.Any())
             {
-                // Ha nincs összetett lábgyakorlat, essünk vissza a legjobb elérhető izolációkra
                 compounds = PickExercises("legs", "Legs", request, isCompound: false, count: 5)
                     .ToList();
             }
@@ -503,9 +460,6 @@ namespace DiplomaFit.Api.Application.Services
             var pickedCompounds = TrimList(compounds, minCount: compounds.Any() ? 1 : 0, maxCount: 2);
             exercises.AddRange(pickedCompounds);
 
-
-
-            // 2) Izolációk az egyes izomcsoportokra
             var isolations = new List<WorkoutExerciseDto>();
 
             WorkoutExerciseDto? PickIso(string subgroup)
@@ -534,7 +488,6 @@ namespace DiplomaFit.Api.Application.Services
             AddIfUnique(PickIso("legs_hamstrings"));
             AddIfUnique(PickIso("calves"));
 
-            // 3) Ha az izolációkból hiányzik valamelyik izomcsoport, próbáljunk meg alternatívát keresni
             WorkoutExerciseDto? FallbackIso()
             {
                 return PickExercises("legs", "Legs", request, isCompound: false, count: 10)
@@ -553,8 +506,6 @@ namespace DiplomaFit.Api.Application.Services
                 AddIfUnique(extra);
             }
 
-            //day.Exercises.AddRange(exercises);
-            // Végső izolációs lista 3–4 elem között, ha elérhető
             var finalizedIsolations = TrimList(
                 isolations,
                 minCount: isolations.Count >= 3 ? 3 : isolations.Count,
@@ -568,11 +519,8 @@ namespace DiplomaFit.Api.Application.Services
         {
             if (request.EquipmentLevel == 0)
             {
-                // otthon: csak home-friendly
-                return list.Where(e => e.IsHomeFriendly).ToList();
+                return list.Where(e => e.IsHomeFriendly = false).ToList();
             }
-
-            // kondiban: mindent engedünk (gépek, rúd, kézi súly, bodyweight)
             return list;
         }
 
@@ -608,7 +556,7 @@ namespace DiplomaFit.Api.Application.Services
                 .ToList();
         }
 
-        //VÁLASZTÁS AZ Exercises TÁBLÁBÓL
+
 
         private IEnumerable<WorkoutExerciseDto> PickExercises(
             string primaryMuscleGroup,
@@ -624,24 +572,18 @@ namespace DiplomaFit.Api.Application.Services
                 .Where(e => e.IsCompound == isCompound)
                 .Where(e => e.DifficultyLevel <= request.Experience + 1);
 
-
-            // A lábgyakorlatoknál ne bukjunk el a Push/Pull kategórián –
-            // sok lábmozdulatnál ez üres vagy másképp jelölt. A többi
-            // izomcsoportnál marad a szigorú egyezés.
             if (!string.Equals(primaryMuscleGroup, "legs", StringComparison.OrdinalIgnoreCase))
             {
                 query = query.Where(e => e.PushPullCategory == pushPullCategory);
             }
 
 
-            // HOME ONLY (equipment_level == 0): csak otthon végezhető gyakorlatok
             if (request.EquipmentLevel == 0)
             {
                 query = query.Where(e => e.IsHomeFriendly);
             }
             else
             {
-                // GYM: bodyweight gyakorlatok közül csak a kivételek mehetnek
                 string[] allowedBodyweightEn =
                 {
                     "Parallel Bar Dip",

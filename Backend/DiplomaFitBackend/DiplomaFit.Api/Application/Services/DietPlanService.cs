@@ -46,7 +46,7 @@ namespace DiplomaFit.Api.Application.Services
                 DailyFat = dailyFat
             };
 
-            // 7 napra generálunk
+            // 7 napra
             for (int day = 1; day <= 7; day++)
             {
                 var dayPlan = new DayPlanDto
@@ -112,7 +112,6 @@ namespace DiplomaFit.Api.Application.Services
 
         private List<Food> PickFoodsForMeal(List<Food> allFoods, string mealCategory, int count)
         {
-            // először próbáljunk a kategórián belül
             var candidates = allFoods
                 .Where(f =>
                     f.MealType == mealCategory ||
@@ -121,7 +120,6 @@ namespace DiplomaFit.Api.Application.Services
 
             if (!candidates.Any())
             {
-                // ha nagyon nincs, válasszunk bármiből (fallback)
                 candidates = allFoods.ToList();
             }
 
@@ -149,12 +147,10 @@ namespace DiplomaFit.Api.Application.Services
             if (!foods.Any() || meal.TargetCalories <= 0)
                 return;
 
-            // kalóriacél elosztása egyenlően az ételek között
             var caloriesPerFood = meal.TargetCalories / foods.Count;
 
             foreach (var food in foods)
             {
-                // kcal/100g -> kcal/1g
                 var kcalPerGram = food.KcalPer100 / 100.0;
                 if (kcalPerGram <= 0)
                     continue;

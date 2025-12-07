@@ -19,7 +19,6 @@ namespace DiplomaFit.Api.Application.Services
 
         public async Task<Guid> GenerateOrUpdatePlanForCaseAsync(Guid caseId, CancellationToken ct = default)
         {
-            // 1) Case lekérése
             var caseEntity = await _db.Cases
                 .Include(c => c.Plan)
                 .FirstOrDefaultAsync(c => c.CaseId == caseId, ct);
@@ -29,7 +28,6 @@ namespace DiplomaFit.Api.Application.Services
                 throw new KeyNotFoundException($"Case not found: {caseId}");
             }
 
-            // 2) Bemeneti DTO az ML-nek
             var input = new DietInputDto
             {
                 gender = caseEntity.Gender,
@@ -43,10 +41,8 @@ namespace DiplomaFit.Api.Application.Services
                 goal_time_weeks = caseEntity.GoalTimeWeeks
             };
 
-            // 3) ML előrejelzés
             var prediction = await _mlClient.PredictAsync(input, ct);
 
-            // 4) DietPlan létrehozása vagy frissítése
             DietPlan plan;
 
             if (caseEntity.Plan == null)

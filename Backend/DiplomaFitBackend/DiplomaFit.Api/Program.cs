@@ -57,11 +57,9 @@ namespace DiplomaFit.Api
 
             var app = builder.Build();
 
-            //Swagger mindig menjen (Dockerben is)
             app.UseSwagger();
             app.UseSwaggerUI();
 
-            // ❌ Egyelőre kikapcsoljuk a HTTPS redirectet konténerben
             // app.UseHttpsRedirection();
 
             app.UseCors();

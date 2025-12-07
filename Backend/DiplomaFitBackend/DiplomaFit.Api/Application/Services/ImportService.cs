@@ -74,7 +74,7 @@ namespace DiplomaFit.Api.Application.Services
                     ? Guid.NewGuid()
                     : Guid.Parse(c.case_id);
 
-                // Case plan_id → ha nincs, legyen ugyanaz mint Plan
+                // Case plan_id → ha nincs, ugyanaz mint Plan
                 if (string.IsNullOrWhiteSpace(c.plan_id) || c.plan_id.ToUpper() == "NULL")
                     c.plan_id = planId.ToString();
 
@@ -196,7 +196,7 @@ namespace DiplomaFit.Api.Application.Services
 
             foreach (var r in records)
             {
-                // ha mégis üres lenne az ID, generálunk
+                // ha üres lenne az ID, generálunk
                 Guid id;
                 if (string.IsNullOrWhiteSpace(r.exercise_id))
                     id = Guid.NewGuid();
@@ -226,15 +226,12 @@ namespace DiplomaFit.Api.Application.Services
                 entities.Add(entity);
             }
 
-            // akár törölheted a régieket előtte, ha szeretnéd:
-            // _dbContext.Exercises.RemoveRange(_dbContext.Exercises);
 
             await _db.Exercises.AddRangeAsync(entities);
             await _db.SaveChangesAsync();
         }
 
 
-        // ============== HELPERS ==============
         private int MapGender(string gender)
         {
             gender = gender.Trim().ToLower();
@@ -258,7 +255,6 @@ namespace DiplomaFit.Api.Application.Services
             };
         }
 
-        // ============== CSV MODEL CLASSES ==============
         private sealed class PlanRow
         {
             public string plan_id { get; set; }

@@ -3,22 +3,6 @@
   "WorkspaceRootPath": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\controllers\\planningcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\controllers\\planningcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\planning\\combinedplanresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\planning\\combinedplanresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\planning\\combinedplanrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\planning\\combinedplanrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\services\\workoutplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\services\\workoutplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,28 +11,68 @@
       "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\domain\\entities\\exercise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\workout\\workoutsplitpredictiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\workout\\workoutsplitpredictiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\workout\\workoutplanrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\workout\\workoutplanrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\interfaces\\imlworkoutsplitclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\interfaces\\imlworkoutsplitclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\services\\mlworkoutsplitclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\services\\mlworkoutsplitclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\services\\mldietplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\services\\mldietplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\services\\importservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\services\\importservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\services\\dietplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\services\\dietplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\services\\dietmlclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\services\\dietmlclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\interfaces\\iworkoutplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\interfaces\\iworkoutplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\interfaces\\imlworkoutsplitclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\interfaces\\imlworkoutsplitclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\interfaces\\imldietplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\interfaces\\imldietplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\interfaces\\iimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\interfaces\\iimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\interfaces\\idietplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\interfaces\\idietplanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\interfaces\\idietmlclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\interfaces\\idietmlclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\mealitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\mealitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\mealdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\mealdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\dietplanresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\dietplanresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\workout\\workoutsplitpredictiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\workout\\workoutsplitpredictiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\workout\\workoutplanrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\workout\\workoutplanrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\workout\\workoutexercisedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -63,20 +87,56 @@
       "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\workout\\weeklyworkoutplandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\planning\\combinedplanresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\planning\\combinedplanresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\planning\\combinedplanrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\planning\\combinedplanrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\ml\\dietpredictiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\ml\\dietpredictiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\ml\\dietinputdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\ml\\dietinputdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\diet\\weeklymealplandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\diet\\weeklymealplandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\diet\\dayplandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\diet\\dayplandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\dtos\\cases\\createcaserequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\dtos\\cases\\createcaserequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\controllers\\planningcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\controllers\\planningcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\controllers\\importcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\controllers\\importcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\controllers\\dietcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\controllers\\dietcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\infrastructure\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\infrastructure\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\services\\importservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\services\\importservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\application\\interfaces\\iimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|solutionrelative:diplomafit.api\\application\\interfaces\\iimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{21793576-C71B-4D53-AECE-7E814D493853}|DiplomaFit.Api\\DiplomaFit.Api.csproj|c:\\projektmuka\\backend\\diplomafitbackend\\diplomafit.api\\domain\\entities\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -102,7 +162,254 @@
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MlDietPlanService.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\MlDietPlanService.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Services\\MlDietPlanService.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\MlDietPlanService.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Services\\MlDietPlanService.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAYwCwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:40:42.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IWorkoutPlanService.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IWorkoutPlanService.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Interfaces\\IWorkoutPlanService.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IWorkoutPlanService.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Interfaces\\IWorkoutPlanService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T02:12:26.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DietMlClient.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\DietMlClient.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Services\\DietMlClient.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\DietMlClient.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Services\\DietMlClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T23:42:56.501Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DietPlanService.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\DietPlanService.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Services\\DietPlanService.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\DietPlanService.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Services\\DietPlanService.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAowJgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T23:44:23.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "MlWorkoutSplitClient.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\MlWorkoutSplitClient.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Services\\MlWorkoutSplitClient.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\MlWorkoutSplitClient.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Services\\MlWorkoutSplitClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T02:10:04.406Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WorkoutPlanService.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\WorkoutPlanService.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Services\\WorkoutPlanService.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\WorkoutPlanService.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Services\\WorkoutPlanService.cs",
+              "ViewState": "AgIAACoCAAAAAAAAAAAUwEkCAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T02:12:53.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Exercise.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Domain\\Entities\\Exercise.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Domain\\Entities\\Exercise.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Domain\\Entities\\Exercise.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Domain\\Entities\\Exercise.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBQAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T00:55:47.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IMlWorkoutSplitClient.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IMlWorkoutSplitClient.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Interfaces\\IMlWorkoutSplitClient.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IMlWorkoutSplitClient.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Interfaces\\IMlWorkoutSplitClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T02:09:29.03Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IMlDietPlanService.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IMlDietPlanService.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Interfaces\\IMlDietPlanService.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IMlDietPlanService.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Interfaces\\IMlDietPlanService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:37:13.011Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IDietPlanService.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IDietPlanService.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Interfaces\\IDietPlanService.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IDietPlanService.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Interfaces\\IDietPlanService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:37:08.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ImportService.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\ImportService.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Services\\ImportService.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\ImportService.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Services\\ImportService.cs",
+              "ViewState": "AgIAABkBAAAAAAAAAAAUwAABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T01:09:27.904Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MealItemDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\MealItemDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\MealItemDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\MealItemDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\MealItemDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:37:01.256Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MealDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\MealDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\MealDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\MealDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\MealDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:36:58.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DietPlanResponseDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\DietPlanResponseDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\DietPlanResponseDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\DietPlanResponseDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\DietPlanResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:36:56.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "WorkoutExerciseDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutExerciseDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutExerciseDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutExerciseDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutExerciseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T02:08:05.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "WorkoutDayDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutDayDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutDayDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutDayDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutDayDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T02:08:23.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IImportService.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IImportService.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Interfaces\\IImportService.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IImportService.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Interfaces\\IImportService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T01:12:55.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "WeeklyWorkoutPlanDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WeeklyWorkoutPlanDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WeeklyWorkoutPlanDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WeeklyWorkoutPlanDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WeeklyWorkoutPlanDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T02:08:40.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IDietMlClient.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IDietMlClient.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Interfaces\\IDietMlClient.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IDietMlClient.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Interfaces\\IDietMlClient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T23:42:12.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "CombinedPlanResponseDto.cs",
               "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Planning\\CombinedPlanResponseDto.cs",
               "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Planning\\CombinedPlanResponseDto.cs",
@@ -115,7 +422,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 17,
+              "Title": "WorkoutPlanRequestDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutPlanRequestDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutPlanRequestDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutPlanRequestDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutPlanRequestDto.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T02:06:49.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "WorkoutSplitPredictionDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutSplitPredictionDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutSplitPredictionDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutSplitPredictionDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutSplitPredictionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T02:07:27.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
               "Title": "CombinedPlanRequestDto.cs",
               "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Planning\\CombinedPlanRequestDto.cs",
               "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Planning\\CombinedPlanRequestDto.cs",
@@ -128,118 +461,121 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "WorkoutPlanService.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\WorkoutPlanService.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Services\\WorkoutPlanService.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\WorkoutPlanService.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Application\\Services\\WorkoutPlanService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMCAAAiAAAAAAAAAA==",
+              "DocumentIndex": 23,
+              "Title": "DietPredictionDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\ML\\DietPredictionDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\ML\\DietPredictionDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\ML\\DietPredictionDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\ML\\DietPredictionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T02:12:53.989Z",
+              "WhenOpened": "2025-12-07T15:36:00.274Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "WorkoutSplitPredictionDto.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutSplitPredictionDto.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutSplitPredictionDto.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutSplitPredictionDto.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutSplitPredictionDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAoAAAAAAAAAA==",
+              "DocumentIndex": 24,
+              "Title": "DietInputDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\ML\\DietInputDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\ML\\DietInputDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\ML\\DietInputDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\ML\\DietInputDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T02:07:27.28Z"
+              "WhenOpened": "2025-12-07T15:35:55.238Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 25,
+              "Title": "WeeklyMealPlanDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Diet\\WeeklyMealPlanDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Diet\\WeeklyMealPlanDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Diet\\WeeklyMealPlanDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Diet\\WeeklyMealPlanDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:35:48.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "DayPlanDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Diet\\DayPlanDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Diet\\DayPlanDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Diet\\DayPlanDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Diet\\DayPlanDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:35:34.841Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "CreateCaseRequestDto.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Cases\\CreateCaseRequestDto.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Cases\\CreateCaseRequestDto.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Cases\\CreateCaseRequestDto.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Cases\\CreateCaseRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T15:35:24.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "DietController.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Controllers\\DietController.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Controllers\\DietController.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Controllers\\DietController.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Controllers\\DietController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T23:42:32.155Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ImportController.cs",
+              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Controllers\\ImportController.cs",
+              "RelativeDocumentMoniker": "DiplomaFit.Api\\Controllers\\ImportController.cs",
+              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Controllers\\ImportController.cs",
+              "RelativeToolTip": "DiplomaFit.Api\\Controllers\\ImportController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-23T01:14:59.965Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
               "Title": "PlanningController.cs",
               "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Controllers\\PlanningController.cs",
               "RelativeDocumentMoniker": "DiplomaFit.Api\\Controllers\\PlanningController.cs",
               "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Controllers\\PlanningController.cs",
               "RelativeToolTip": "DiplomaFit.Api\\Controllers\\PlanningController.cs",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAgwFAAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T02:15:52.246Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T02:15:52.246Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 28,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Program.cs",
               "RelativeDocumentMoniker": "DiplomaFit.Api\\Program.cs",
               "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Program.cs",
               "RelativeToolTip": "DiplomaFit.Api\\Program.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAwwEIAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAA9wD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-23T02:10:48.965Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "WorkoutPlanRequestDto.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutPlanRequestDto.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutPlanRequestDto.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutPlanRequestDto.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutPlanRequestDto.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T02:06:49.338Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IMlWorkoutSplitClient.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IMlWorkoutSplitClient.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Interfaces\\IMlWorkoutSplitClient.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IMlWorkoutSplitClient.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Application\\Interfaces\\IMlWorkoutSplitClient.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T02:09:29.03Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Exercise.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Domain\\Entities\\Exercise.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Domain\\Entities\\Exercise.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Domain\\Entities\\Exercise.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Domain\\Entities\\Exercise.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T00:55:47.286Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MlWorkoutSplitClient.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\MlWorkoutSplitClient.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Services\\MlWorkoutSplitClient.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\MlWorkoutSplitClient.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Application\\Services\\MlWorkoutSplitClient.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAzwB0AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T02:10:04.406Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "IWorkoutPlanService.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IWorkoutPlanService.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Interfaces\\IWorkoutPlanService.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IWorkoutPlanService.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Application\\Interfaces\\IWorkoutPlanService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T02:12:26.268Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 32,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\appsettings.json",
               "RelativeDocumentMoniker": "DiplomaFit.Api\\appsettings.json",
@@ -251,43 +587,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "WeeklyWorkoutPlanDto.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WeeklyWorkoutPlanDto.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WeeklyWorkoutPlanDto.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WeeklyWorkoutPlanDto.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WeeklyWorkoutPlanDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T02:08:40.745Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "WorkoutDayDto.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutDayDto.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutDayDto.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutDayDto.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutDayDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T02:08:23.489Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "WorkoutExerciseDto.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutExerciseDto.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutExerciseDto.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutExerciseDto.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Application\\Dtos\\Workout\\WorkoutExerciseDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T02:08:05.184Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 36,
               "Title": "20251123011856_AddExercisesTable.cs",
               "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Migrations\\20251123011856_AddExercisesTable.cs",
               "RelativeDocumentMoniker": "DiplomaFit.Api\\Migrations\\20251123011856_AddExercisesTable.cs",
@@ -299,43 +599,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ImportController.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Controllers\\ImportController.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Controllers\\ImportController.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Controllers\\ImportController.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Controllers\\ImportController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBEAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T01:14:59.965Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "IImportService.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IImportService.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Interfaces\\IImportService.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Interfaces\\IImportService.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Application\\Interfaces\\IImportService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T01:12:55.101Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ImportService.cs",
-              "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\ImportService.cs",
-              "RelativeDocumentMoniker": "DiplomaFit.Api\\Application\\Services\\ImportService.cs",
-              "ToolTip": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Application\\Services\\ImportService.cs",
-              "RelativeToolTip": "DiplomaFit.Api\\Application\\Services\\ImportService.cs",
-              "ViewState": "AgIAANMAAAAAAAAAAAAAALQAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-23T01:09:27.904Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 33,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Infrastructure\\AppDbContext.cs",
               "RelativeDocumentMoniker": "DiplomaFit.Api\\Infrastructure\\AppDbContext.cs",
@@ -347,7 +611,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 35,
               "Title": "Case.cs",
               "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Domain\\Entities\\Case.cs",
               "RelativeDocumentMoniker": "DiplomaFit.Api\\Domain\\Entities\\Case.cs",
@@ -359,7 +623,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 34,
               "Title": "Enums.cs",
               "DocumentMoniker": "C:\\Projektmuka\\Backend\\DiplomaFitBackend\\DiplomaFit.Api\\Domain\\Entities\\Enums.cs",
               "RelativeDocumentMoniker": "DiplomaFit.Api\\Domain\\Entities\\Enums.cs",
