@@ -2,13 +2,16 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Projekt fájl bemásolása és restore
-COPY ["DiplomaFit.Api.csproj", "./"]
-RUN dotnet restore
+COPY ["DiplomaFitBackend.sln", "./"]
+COPY ["DiplomaFit.Api/DiplomaFit.Api.csproj", "DiplomaFit.Api/"]
+COPY ["DiplomaFit.Data/DiplomaFit.Data.csproj", "DiplomaFit.Data/"]
+COPY ["DiplomaFit.Model/DiplomaFit.Model.csproj", "DiplomaFit.Model/"]
+COPY ["DiplomaFit.Service/DiplomaFit.Service.csproj", "DiplomaFit.Service/"]
 
-# Összes forrás bemásolása és publish
+RUN dotnet restore "DiplomaFit.Api/DiplomaFit.Api.csproj"
+
 COPY . .
-RUN dotnet publish -c Release -o /app/publish
+RUN dotnet publish "DiplomaFit.Api/DiplomaFit.Api.csproj" -c Release -o /app/publish
 
 # 2) Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final

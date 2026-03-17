@@ -22,8 +22,8 @@ services:
 
   api:
     build:
-      context: ./Backend/DiplomaFitBackend/DiplomaFit.Api
-      dockerfile: Dockerfile
+      context: ./Backend/DiplomaFitBackend
+      dockerfile: DiplomaFit.Api/Dockerfile
     container_name: diploma-fit-api
     depends_on:
       - sql
