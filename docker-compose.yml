@@ -1,5 +1,4 @@
 services:
-
   sql:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: diploma-sql
@@ -7,21 +6,14 @@ services:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "PaeszEob_2003"
       MSSQL_PID: "Express"
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: "PaeszEob_2003"
-      MSSQL_PID: "Express"
     ports:
       - "1433:1433"
     volumes:
-      - diploma_sql_data:/var/opt/mssql
       - diploma_sql_data:/var/opt/mssql
     networks:
       - diplomanet
 
   ml:
-    build:
-      context: ./AI_ML/PythonMicro
-      dockerfile: Dockerfile
     build:
       context: ./AI_ML/PythonMicro
       dockerfile: Dockerfile
@@ -35,17 +27,11 @@ services:
     build:
       context: ./Backend/FitAppBackendRefactor
       dockerfile: FitAppBackendRefactor/Dockerfile
-      context: ./Backend/FitAppBackendRefactor
-      dockerfile: FitAppBackendRefactor/Dockerfile
     container_name: diploma-fit-api
     depends_on:
       - sql
       - ml
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: http://+:8080
-      ConnectionStrings__DefaultConnection: "Server=sql,1433;Database=DiplomaFitDb;User Id=sa;Password=PaeszEob_2003;TrustServerCertificate=True;"
-      ExternalServices__MlApiBaseUrl: "http://ml:8000"
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080
       ConnectionStrings__DefaultConnection: "Server=sql,1433;Database=DiplomaFitDb;User Id=sa;Password=PaeszEob_2003;TrustServerCertificate=True;"
@@ -58,7 +44,6 @@ services:
   demo-web:
     build:
       context: ./Frontend/Demo_app
-      context: ./Frontend/Demo_app
       dockerfile: Dockerfile
     container_name: diploma-demo-web
     depends_on:
@@ -70,10 +55,7 @@ services:
 
 volumes:
   diploma_sql_data:
-volumes:
-  diploma_sql_data:
 
 networks:
   diplomanet:
-    driver: bridge
     driver: bridge
