@@ -1,18 +1,11 @@
-# ===============================
-#      GLOBAL SETTINGS
-# ===============================
-
-# OS files
+# =========================
+# GENERAL
+# =========================
 .DS_Store
 Thumbs.db
-
-# Logs
 *.log
-logs/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
+<<<<<<< HEAD
 # Env files
 .env
 *.env
@@ -66,124 +59,86 @@ project.lock.json
 project.assets.json
 
 # User-specific files
+=======
+# =========================
+# VISUAL STUDIO
+# =========================
+.vs/
+>>>>>>> 366a48a (cleanup gitignore)
 *.user
-*.userosscache
 *.suo
+*.userosscache
 *.sln.docstates
 
-# Publish output
-publish/
-appsettings.Development.json  # optional: ha nem akarod feltölteni
+# Rider / IntelliJ
+.idea/
 
+# =========================
+# .NET
+# =========================
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
 
-# ===============================
-#            FLUTTER
-# ===============================
+# EF migrations build artifacts
+*.runtimeconfig.json
+*.deps.json
 
-# Flutter generated
-build/
+# =========================
+# DOCKER
+# =========================
+docker-compose.override.yml
+
+# =========================
+# FLUTTER / DART
+# =========================
+.dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
-.pub/
-.melos_tool/
-
-# Dart
-.dart_tool/
 .packages
-
-# Android Flutter
-android/.gradle/
-android/local.properties
-android/app/**/keystore.properties
-android/key.properties
-*.keystore
-*.jks
-
-# iOS Flutter
-ios/Flutter/App.framework
-ios/Flutter/Flutter.framework
-ios/Flutter/flutter_export_environment.sh
+.pub-cache/
+.pub/
+build/
 ios/Pods/
-ios/.symlinks/
-ios/DerivedData/
-Runner.xcworkspace/
+android/.gradle/
+android/app/build/
 
-# Web Flutter
-web/profiles.json
-
-
-# ===============================
-#           PYTHON ML
-# ===============================
-
-# Byte-compiled
+# =========================
+# PYTHON
+# =========================
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Distributions
-build/
-dist/
-*.egg-info/
-.eggs/
-
-# Virtual env
 venv/
 .venv/
 env/
-.env/
 
 # Jupyter
 .ipynb_checkpoints/
 
-# PyCache and tools
-.pytest_cache/
-.mypy_cache/
+# =========================
+# ML MODEL FILES (ha nem akarod verziózni)
+# =========================
+# *.pkl
 
-# ML Models (ha nem akarod feltölteni)
-*.pkl
-*.joblib
-*.h5
-*.onnx
+# =========================
+# NODE (ha később lesz)
+# =========================
+node_modules/
 
+# =========================
+# OS
+# =========================
+*.swp
+*.tmp
+*.bak
 
-# ===============================
-#            DOCKER
-# ===============================
-
-# Docker extras
-docker-data/
-docker-volume/
-docker-compose.override.yml
-
-# Containers/logs
-*.tar
-*.container
-*.img
-
-
-# ===============================
-#           WINDOWS
-# ===============================
-
-ehthumbs.db
-Desktop.ini
-.zip
-*.zip
-
-
-# ===============================
-#           MACOS
-# ===============================
-
-.AppleDouble
-.LSOverride
-
-
-# ===============================
-#             LINUX
-# ===============================
-
-*~
-.cache/
+# =========================
+# SECRETS
+# =========================
+appsettings.Development.json
+.env
