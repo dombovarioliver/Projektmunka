@@ -1,0 +1,6 @@
+@FitAppBackendRefactor_HostAddress = http://localhost:5096
+
+GET {{FitAppBackendRefactor_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

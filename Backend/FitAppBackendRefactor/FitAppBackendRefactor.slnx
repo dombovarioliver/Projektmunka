@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DiplomaFit.Data/DiplomaFit.Data.csproj" />
+  <Project Path="DiplomaFit.Model/DiplomaFit.Model.csproj" />
+  <Project Path="DiplomaFit.Service/DiplomaFit.Service.csproj" />
+  <Project Path="FitAppBackendRefactor/FitAppBackend.Api.csproj" />
+</Solution>

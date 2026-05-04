@@ -53,6 +53,9 @@ x86/
 *.exe
 *.dll
 *.pdb
+.vs/
+bin/
+obj/
 
 # NuGet
 *.nupkg

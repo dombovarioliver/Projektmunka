@@ -1,19 +1,23 @@
 services:
+
   sql:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: diploma-sql
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=PaeszEob_2003
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "PaeszEob_2003"
+      MSSQL_PID: "Express"
     ports:
       - "1433:1433"
     volumes:
-      - sql_data:/var/opt/mssql
+      - diploma_sql_data:/var/opt/mssql
     networks:
       - diplomanet
 
   ml:
-    build: ./AI_ML/PythonMicro
+    build:
+      context: ./AI_ML/PythonMicro
+      dockerfile: Dockerfile
     container_name: diet-ml
     ports:
       - "8000:8000"
@@ -22,33 +26,26 @@ services:
 
   api:
     build:
-      context: ./Backend/DiplomaFitBackend
-      dockerfile: DiplomaFit.Api/Dockerfile
+      context: ./Backend/FitAppBackendRefactor
+      dockerfile: FitAppBackendRefactor/Dockerfile
     container_name: diploma-fit-api
     depends_on:
       - sql
       - ml
     environment:
-      # ASP.NET környezet
-      - ASPNETCORE_ENVIRONMENT=Development
-      # SQL kapcsolat: a szerver neve **sql**, mert a service neve ez
-      - ConnectionStrings__DefaultConnection=Server=diploma-sql,1433;Database=DiplomaFitDb;User Id=sa;Password=PaeszEob_2003;TrustServerCertificate=True;
-      # ML elérés: a szerver neve **ml**
-      - Ml__BaseUrl=http://ml:8000
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: "Server=sql,1433;Database=DiplomaFitDb;User Id=sa;Password=PaeszEob_2003;TrustServerCertificate=True;"
+      ExternalServices__MlApiBaseUrl: "http://ml:8000"
     ports:
       - "8080:8080"
     networks:
       - diplomanet
-    command: ["dotnet", "DiplomaFit.Api.dll", "/seed"]
-    volumes:
-      - ./docs:/docs
-    
-  demo-web:
+
+  frontend:
     build:
-      context: ./Frontend/demo_app
+      context: ./Frontend/Demo_app
       dockerfile: Dockerfile
-      args:
-        API_BASE_URL: http://localhost:8080/api
     container_name: diploma-demo-web
     depends_on:
       - api
@@ -57,9 +54,9 @@ services:
     networks:
       - diplomanet
 
+volumes:
+  diploma_sql_data:
 
 networks:
   diplomanet:
-
-volumes:
-  sql_data:
+    driver: bridge
