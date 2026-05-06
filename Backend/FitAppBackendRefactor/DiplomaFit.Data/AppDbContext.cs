@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using DiplomaFit.Model.Entities;
+﻿using DiplomaFit.Model.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace DiplomaFit.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext
     {
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<Food> Foods { get; set; }

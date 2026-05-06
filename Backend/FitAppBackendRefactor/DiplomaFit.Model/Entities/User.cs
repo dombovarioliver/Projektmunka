@@ -24,6 +24,9 @@ namespace DiplomaFit.Model.Entities
         [StringLength(250)]
         public string Email { get; set; }
 
+        [Required]
+        public string PasswordHash { get; set; }
+
         public Gender Gender { get; set; }
 
         [Required]
