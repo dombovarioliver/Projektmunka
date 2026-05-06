@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DiplomaFit.Data;
 using DiplomaFit.Model.Dto.Workout;
 using DiplomaFit.Model.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace DiplomaFit.Service.WorkoutService
 {
@@ -13,14 +14,17 @@ namespace DiplomaFit.Service.WorkoutService
     {
         private readonly ExerciseRepository _exerciseRepository;
         private readonly WorkoutSplitMlClientService _workoutSplitMlClientService;
+        private readonly ILogger<WorkoutPlanService> _logger;
         private readonly Random _random = new();
 
         public WorkoutPlanService(
             ExerciseRepository exerciseRepository,
-            WorkoutSplitMlClientService workoutSplitMlClientService)
+            WorkoutSplitMlClientService workoutSplitMlClientService,
+            ILogger<WorkoutPlanService> logger)
         {
             _exerciseRepository = exerciseRepository;
             _workoutSplitMlClientService = workoutSplitMlClientService;
+            _logger = logger;
         }
 
         public async Task<WeeklyWorkoutPlanDto> GenerateWeeklyPlanAsync(
@@ -154,10 +158,15 @@ namespace DiplomaFit.Service.WorkoutService
             string dayType,
             WorkoutPlanRequestDto request)
         {
+            var normalizedExperience = request.Experience <= 2
+                ? request.Experience + 1
+                : request.Experience;
+
             var exercises = _exerciseRepository
                 .GetAll()
-                .Where(e => e.MinExperienceLevel <= request.Experience)
+                .Where(e => e.MinExperienceLevel <= normalizedExperience)
                 .ToList();
+            var afterExperienceCount = exercises.Count;
 
             if (request.EquipmentLevel == 0)
             {
@@ -165,6 +174,7 @@ namespace DiplomaFit.Service.WorkoutService
                     .Where(e => e.IsHomeFriendly)
                     .ToList();
             }
+            var afterEquipmentCount = exercises.Count;
 
             exercises = dayType switch
             {
@@ -192,11 +202,47 @@ namespace DiplomaFit.Service.WorkoutService
 
                 _ => exercises
             };
+            var afterCategoryCount = exercises.Count;
 
-            return exercises
+            if (afterCategoryCount == 0)
+            {
+                _logger.LogWarning(
+                    "Nem találtunk gyakorlatot a(z) {DayType} naphoz a szűrések után. Fallback: kategória szűrés nélkül próbálkozunk. Experience={Experience}, EquipmentLevel={EquipmentLevel}, AfterExperience={AfterExperienceCount}, AfterEquipment={AfterEquipmentCount}",
+                    dayType,
+                    normalizedExperience,
+                    request.EquipmentLevel,
+                    afterExperienceCount,
+                    afterEquipmentCount);
+
+                exercises = _exerciseRepository
+                    .GetAll()
+                    .Where(e => e.MinExperienceLevel <= normalizedExperience)
+                    .ToList();
+
+                if (request.EquipmentLevel == 0)
+                {
+                    exercises = exercises
+                        .Where(e => e.IsHomeFriendly)
+                        .ToList();
+                }
+            }
+
+            var selected = exercises
                 .OrderBy(_ => _random.Next())
                 .Take(6)
                 .ToList();
+
+            _logger.LogInformation(
+               "Workout nap generálva. DayType={DayType}, Experience={Experience}, EquipmentLevel={EquipmentLevel}, AfterExperience={AfterExperienceCount}, AfterEquipment={AfterEquipmentCount}, AfterCategory={AfterCategoryCount}, Selected={SelectedCount}",
+               dayType,
+               normalizedExperience,
+               request.EquipmentLevel,
+               afterExperienceCount,
+               afterEquipmentCount,
+               afterCategoryCount,
+               selected.Count);
+
+            return selected;
         }
 
         private WorkoutExerciseDto MapToWorkoutExerciseDto(Exercise exercise)

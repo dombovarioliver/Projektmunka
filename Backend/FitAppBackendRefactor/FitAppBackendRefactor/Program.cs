@@ -39,7 +39,9 @@ if (string.IsNullOrWhiteSpace(connectionString))
 //DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseSqlServer(connectionString);
+    options
+    .UseSqlServer(connectionString)
+    .UseLazyLoadingProxies();
 });
 
 //ML API URL (docker + local fallback)
@@ -110,7 +112,7 @@ app.UseSwaggerUI();
 //CORS
 app.UseCors("frontend");
 
-// ⚠️ Dockerben NE erőltesd a HTTPS redirectet
+// Dockerben NE erőltesd a HTTPS redirectet
 // app.UseHttpsRedirection();
 
 app.UseAuthorization();
