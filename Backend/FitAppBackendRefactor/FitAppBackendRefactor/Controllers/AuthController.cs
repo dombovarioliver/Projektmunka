@@ -11,7 +11,7 @@ using System.Text;
 namespace FitAppBackend.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
         private UserManager<AppUser> userManager;
@@ -61,7 +61,7 @@ namespace FitAppBackend.Api.Controllers
 
             int accessTokenExpiryInMinutes = 24 * 60;
             var newAccessToken = GenerateAccessToken(principal?.Claims, accessTokenExpiryInMinutes);
-            var newRefreshToken = await GenerateRefreshToken(user);
+            var newRefreshToken = GenerateRefreshToken();
             user.RefreshToken = newRefreshToken;
 
             await userManager.UpdateAsync(user);
@@ -79,11 +79,13 @@ namespace FitAppBackend.Api.Controllers
         {
             var tokenValidationParameters = new TokenValidationParameters
             {
-                ValidateAudience = false,
-                ValidateIssuer = false,
+                ValidateAudience = true,
+                ValidateIssuer = true,
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(
-                  Encoding.UTF8.GetBytes(configuration["jwt:key"] ?? "")),
+                  Encoding.UTF8.GetBytes(configuration["jwt:key"] ?? throw new SecurityTokenException("jwt:key not configured"))),
+                ValidIssuer = configuration["jwt:issuer"] ?? throw new SecurityTokenException("jwt:issuer not configured"),
+                ValidAudience = configuration["jwt:audience"] ?? throw new SecurityTokenException("jwt:audience not configured"),
                 ValidateLifetime = false
             };
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -120,7 +122,9 @@ namespace FitAppBackend.Api.Controllers
                     int accessTokenExpiryInMinutes = 24 * 60;
                     var accessToken = GenerateAccessToken(claim, accessTokenExpiryInMinutes);
                     int refreshTokenExpiryInMinutes = 24 * 60 * 7;
-                    var refreshToken = await GenerateRefreshToken(user);
+                    var refreshToken = GenerateRefreshToken();
+                    user.RefreshToken = refreshToken;
+                    await userManager.UpdateAsync(user);
 
                     return Ok(new LoginResultDto()
                     {
@@ -150,25 +154,20 @@ namespace FitAppBackend.Api.Controllers
                   Encoding.UTF8.GetBytes(configuration["jwt:key"] ?? throw new Exception("jwt:key not found in appsettings.json")));
 
             return new JwtSecurityToken(
-                  issuer: "movieclub.com",
-                  audience: "movieclub.com",
+                  issuer: configuration["jwt:issuer"] ?? throw new Exception("jwt:issuer not found in appsettings.json"),
+                  audience: configuration["jwt:audience"] ?? throw new Exception("jwt:audience not found in appsettings.json"),
                   claims: claims?.ToArray(),
                   expires: DateTime.Now.AddMinutes(expiryInMinutes),
                   signingCredentials: new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256)
                 );
         }
 
-        private async Task<string> GenerateRefreshToken(AppUser user)
+        private string GenerateRefreshToken()
         {
             var randomNumber = new byte[32];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(randomNumber);
-                string result = Convert.ToBase64String(randomNumber);
-                user.RefreshToken = result;
-                await userManager.UpdateAsync(user);
-                return result;
-            }
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(randomNumber);
+            return Convert.ToBase64String(randomNumber);
         }
     }
 }

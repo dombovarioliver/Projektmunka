@@ -1,4 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using DiplomaFit.Data;
+using DiplomaFit.Data.Helpers;
 using DiplomaFit.Service.Dto;
 using DiplomaFit.Service.UserService;
 using DiplomaFit.Service.FoodService;
@@ -49,6 +54,33 @@ var mlApiBaseUrl =
     builder.Configuration["ExternalServices:MlApiBaseUrl"] ??
     builder.Configuration["ExternalServices__MlApiBaseUrl"] ??
     "http://localhost:8000";
+
+//Identity + JWT
+builder.Services
+    .AddIdentityCore<AppUser>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
+
+var jwtKey = builder.Configuration["jwt:key"] ?? throw new InvalidOperationException("jwt:key nincs beállítva.");
+var jwtIssuer = builder.Configuration["jwt:issuer"] ?? throw new InvalidOperationException("jwt:issuer nincs beállítva.");
+var jwtAudience = builder.Configuration["jwt:audience"] ?? throw new InvalidOperationException("jwt:audience nincs beállítva.");
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtIssuer,
+            ValidAudience = jwtAudience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+            ClockSkew = TimeSpan.Zero
+        };
+    });
 
 //DTO Provider
 builder.Services.AddScoped<DtoProvider>();
@@ -115,6 +147,7 @@ app.UseCors("frontend");
 // Dockerben NE erőltesd a HTTPS redirectet
 // app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
