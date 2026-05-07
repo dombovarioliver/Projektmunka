@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,6 +24,10 @@ namespace DiplomaFit.Model.Entities
         [EmailAddress]
         [StringLength(250)]
         public string Email { get; set; }
+
+        [Required]
+        [StringLength(250)]
+        public string PasswordHash { get; set; }
 
         public Gender Gender { get; set; }
 
