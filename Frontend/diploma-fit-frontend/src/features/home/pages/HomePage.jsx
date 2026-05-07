@@ -1,8 +1,10 @@
 export default function HomePage() {
   return (
-    <main className="container mt-5">
+    <section>
       <h1>DiplomaFit</h1>
-      <p>A frontend alkalmazás sikeresen elindult.</p>
-    </main>
+      <p className="lead">
+        AI-alapú fitnesz webalkalmazás edzéstervvel, étrenddel és élő chattel.
+      </p>
+    </section>
   );
 }
