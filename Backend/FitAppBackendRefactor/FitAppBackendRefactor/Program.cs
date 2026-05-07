@@ -3,6 +3,7 @@ using DiplomaFit.Service.DietService;
 using DiplomaFit.Service.Dto;
 using DiplomaFit.Service.ExerciseService;
 using DiplomaFit.Service.FoodService;
+using DiplomaFit.Service.GymService;
 using DiplomaFit.Service.UserService;
 using DiplomaFit.Service.WorkoutService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -136,6 +137,8 @@ builder.Services.AddScoped<ExerciseService>();
 
 builder.Services.AddScoped<DietPlanService>();
 builder.Services.AddScoped<WorkoutPlanService>();
+
+builder.Services.AddHttpClient<GooglePlacesGymService>();
 
 // 🌐 HttpClient → ML API
 builder.Services.AddHttpClient<DietMlClientService>(client =>
