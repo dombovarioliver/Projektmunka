@@ -48,7 +48,8 @@ services:
       context: ./Frontend/diploma-fit-frontend
       dockerfile: Dockerfile
       args:
-        VITE_API_BASE_URL: "http://localhost:8080/api"
+        VITE_API_BASE_URL: "/api"
+        VITE_GOOGLE_MAPS_API_KEY: ${VITE_GOOGLE_MAPS_API_KEY}
     container_name: frontend
     depends_on:
       api:

@@ -7,6 +7,8 @@ const BUDAPEST_CENTER = {
   lng: 19.0402,
 };
 
+const googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
 export default function GymsMap() {
   const [gyms, setGyms] = useState([]);
   const [selectedGym, setSelectedGym] = useState(null);
@@ -37,8 +39,17 @@ export default function GymsMap() {
     return <div className="alert alert-danger">{errorMessage}</div>;
   }
 
+  if (!googleMapsApiKey) {
+    return (
+      <div className="alert alert-warning">
+        A térkép nem jeleníthető meg, mert hiányzik a Google Maps API kulcs
+        (`VITE_GOOGLE_MAPS_API_KEY`).
+      </div>
+    );
+  }
+
   return (
-    <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+    <APIProvider apiKey={googleMapsApiKey}>
       <div className="rounded shadow-sm overflow-hidden" style={{ height: "650px" }}>
         <Map
           defaultCenter={BUDAPEST_CENTER}
