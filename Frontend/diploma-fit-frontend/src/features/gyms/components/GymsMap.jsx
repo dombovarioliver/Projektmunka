@@ -39,7 +39,7 @@ export default function GymsMap() {
     return <div className="alert alert-danger">{errorMessage}</div>;
   }
 
-  if (!googleMapsApiKey) {
+    if (!googleMapsApiKey) {
     return (
       <div className="alert alert-warning">
         A térkép nem jeleníthető meg, mert hiányzik a Google Maps API kulcs

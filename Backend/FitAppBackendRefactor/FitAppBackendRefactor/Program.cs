@@ -19,15 +19,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//CORS (frontend miatt)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("frontend", policy =>
     {
         policy
-            .AllowAnyOrigin()
+            .WithOrigins(
+                "http://localhost:5173",
+                "https://localhost:5173",
+                "http://localhost:8081"
+            )
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowAnyMethod()
+            .AllowCredentials();
     });
 });
 
@@ -179,9 +183,7 @@ app.UseSwaggerUI();
 //CORS
 app.UseCors("frontend");
 
-// Dockerben NE erőltesd a HTTPS redirectet
-// app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
