@@ -29,8 +29,10 @@ services:
       dockerfile: FitAppBackendRefactor/Dockerfile
     container_name: diploma-fit-api
     depends_on:
-      - sql
-      - ml
+      sql:
+        condition: service_started
+      ml:
+        condition: service_started
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080
@@ -45,9 +47,12 @@ services:
     build:
       context: ./Frontend/diploma-fit-frontend
       dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: "http://localhost:8080/api"
     container_name: frontend
     depends_on:
-      - api
+      api:
+        condition: service_started
     ports:
       - "8081:80"
     networks:
