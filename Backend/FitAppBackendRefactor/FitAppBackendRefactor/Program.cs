@@ -3,7 +3,6 @@ using DiplomaFit.Service.DietService;
 using DiplomaFit.Service.Dto;
 using DiplomaFit.Service.ExerciseService;
 using DiplomaFit.Service.FoodService;
-using DiplomaFit.Service.GymService;
 using DiplomaFit.Service.UserService;
 using DiplomaFit.Service.WorkoutService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -23,10 +22,10 @@ builder.Services.AddSwaggerGen();
 //CORS (frontend miatt)
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("ReactFrontend", policy =>
+    options.AddPolicy("frontend", policy =>
     {
         policy
-            .WithOrigins("http://localhost:5173")
+            .AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -145,8 +144,6 @@ builder.Services.AddHttpClient<WorkoutSplitMlClientService>(client =>
     client.BaseAddress = new Uri(mlApiBaseUrl);
 });
 
-builder.Services.AddHttpClient<GooglePlacesGymService>();
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -180,7 +177,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 //CORS
-app.UseCors("ReactFrontend");
+app.UseCors("frontend");
 
 // Dockerben NE erőltesd a HTTPS redirectet
 // app.UseHttpsRedirection();

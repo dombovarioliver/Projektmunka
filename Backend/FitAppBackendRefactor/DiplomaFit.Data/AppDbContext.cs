@@ -9,8 +9,6 @@ namespace DiplomaFit.Data
         public DbSet<Food> Foods { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Gym> Gyms { get; set; }
-
         public AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt)
         {
 

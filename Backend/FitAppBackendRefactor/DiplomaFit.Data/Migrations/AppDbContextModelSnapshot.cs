@@ -133,36 +133,6 @@ namespace DiplomaFit.Data.Migrations
                     b.ToTable("Foods");
                 });
 
-            modelBuilder.Entity("DiplomaFit.Model.Entities.Gym", b =>
-                {
-                    b.Property<string>("GymId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<double>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Longitude")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<double?>("Rating")
-                        .HasColumnType("float");
-
-                    b.HasKey("GymId");
-
-                    b.ToTable("Gyms");
-                });
-
             modelBuilder.Entity("DiplomaFit.Model.Entities.User", b =>
                 {
                     b.Property<string>("Id")

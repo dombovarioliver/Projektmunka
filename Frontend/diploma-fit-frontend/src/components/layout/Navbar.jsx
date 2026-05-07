@@ -1,6 +1,10 @@
 import { NavLink, Link } from "react-router-dom";
 
+import { useAuth } from "../../features/auth/context/useAuth";
+
 export default function Navbar() {
+  const { userEmail, logout } = useAuth();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
@@ -29,9 +33,9 @@ export default function Navbar() {
             </li>
 
             <li className="nav-item">
-                <NavLink className="nav-link" to="/gyms">
-                 Konditermek
-                </NavLink>
+              <NavLink className="nav-link" to="/gyms">
+                Konditermek
+              </NavLink>
             </li>
 
             <li className="nav-item">
@@ -56,6 +60,17 @@ export default function Navbar() {
               <NavLink className="nav-link" to="/profile">
                 Profil
               </NavLink>
+            </li>
+
+            <li className="nav-item d-flex align-items-center ms-lg-3">
+              <span className="navbar-text me-3">{userEmail}</span>
+
+              <button
+                className="btn btn-outline-light btn-sm"
+                onClick={logout}
+              >
+                Kilépés
+              </button>
             </li>
           </ul>
         </div>
