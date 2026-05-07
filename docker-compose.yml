@@ -43,9 +43,9 @@ services:
 
   demo-web:
     build:
-      context: ./Frontend/Demo_app
+      context: ./Frontend/diploma-fit-frontend
       dockerfile: Dockerfile
-    container_name: diploma-demo-web
+    container_name: frontend
     depends_on:
       - api
     ports:
