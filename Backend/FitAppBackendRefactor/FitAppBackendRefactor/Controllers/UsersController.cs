@@ -73,6 +73,18 @@ namespace FitAppBackendRefactor.Controllers
             return NoContent();
         }
 
-        
+        [HttpPost("{id}/profile-picture")]
+        public async Task<IActionResult> UploadProfilePicture(string id, IFormFile file)
+        {
+            var result = await _userService.UploadProfilePictureAsync(id, file);
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(new
+            {
+                profilePictureUrl = result
+            });
+        }
     }
 }

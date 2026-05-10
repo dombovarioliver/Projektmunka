@@ -1,9 +1,51 @@
 import { NavLink, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import { useAuth } from "../../features/auth/context/useAuth";
 
 export default function Navbar() {
-  const { userEmail, logout } = useAuth();
+  const { logout } = useAuth();
+
+  const [userData, setUserData] = useState({
+    name: localStorage.getItem("name") || "Felhasználó",
+    profilePictureUrl: localStorage.getItem("profilePictureUrl") || "",
+  });
+
+  useEffect(() => {
+    function loadUserData() {
+      setUserData({
+        name: localStorage.getItem("name") || "Felhasználó",
+        profilePictureUrl:
+          localStorage.getItem("profilePictureUrl") || "",
+      });
+    }
+
+    loadUserData();
+
+    window.addEventListener("storage", loadUserData);
+
+    return () => {
+      window.removeEventListener("storage", loadUserData);
+    };
+  }, []);
+
+  function getProfileImageUrl(url) {
+    if (!url || url.trim() === "") {
+      return (
+        "https://ui-avatars.com/api/?name=" +
+        encodeURIComponent(userData.name || "User")
+      );
+    }
+
+    if (url.startsWith("http")) {
+      return url;
+    }
+
+    const apiOrigin =
+      import.meta.env.VITE_API_ORIGIN || "http://localhost:8080";
+
+    return `${apiOrigin}${url.startsWith("/") ? "" : "/"}${url}`;
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -62,11 +104,25 @@ export default function Navbar() {
               </NavLink>
             </li>
 
-            <li className="nav-item d-flex align-items-center ms-lg-3">
-              <span className="navbar-text me-3">{userEmail}</span>
+            <li className="nav-item d-flex align-items-center ms-lg-3 gap-2">
+              <img
+                src={getProfileImageUrl(userData.profilePictureUrl)}
+                alt="Profilkép"
+                style={{
+                  width: "38px",
+                  height: "38px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  border: "2px solid rgba(255,255,255,0.3)",
+                }}
+              />
+
+              <span className="navbar-text fw-semibold text-white">
+                {userData.name}
+              </span>
 
               <button
-                className="btn btn-outline-light btn-sm"
+                className="btn btn-outline-light btn-sm ms-2"
                 onClick={logout}
               >
                 Kilépés

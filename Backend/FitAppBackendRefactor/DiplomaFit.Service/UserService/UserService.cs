@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace DiplomaFit.Service.UserService
 {
@@ -86,6 +87,64 @@ namespace DiplomaFit.Service.UserService
             await _userRepository.Delete(user);
 
             return true;
+        }
+
+        public async Task<string?> UploadProfilePictureAsync(string id, IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return null;
+
+            var user = _userRepository.FindById(id);
+
+            if (user == null)
+                return null;
+
+            var allowedExtensions = new[]
+            {
+                ".jpg",
+                ".jpeg",
+                ".png",
+                ".webp"
+            };
+
+            var extension = Path
+                .GetExtension(file.FileName)
+                .ToLower();
+
+            if (!allowedExtensions.Contains(extension))
+                return null;
+
+            var uploadFolder = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "uploads",
+                "profile-pictures"
+            );
+
+            if (!Directory.Exists(uploadFolder))
+                Directory.CreateDirectory(uploadFolder);
+
+            var fileName =
+                $"{id}_{Guid.NewGuid()}{extension}";
+
+            var filePath = Path.Combine(
+                uploadFolder,
+                fileName
+            );
+
+            using (var stream = new FileStream(
+                filePath,
+                FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            user.ProfilePictureUrl =
+                $"/uploads/profile-pictures/{fileName}";
+
+            await _userRepository.UpdateAsync(user);
+
+            return user.ProfilePictureUrl;
         }
     }
 }

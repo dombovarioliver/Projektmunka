@@ -19,6 +19,7 @@ export default function LoginPage() {
 
     try {
       await login(email, password);
+
       navigate("/");
     } catch (error) {
       console.error(error);
