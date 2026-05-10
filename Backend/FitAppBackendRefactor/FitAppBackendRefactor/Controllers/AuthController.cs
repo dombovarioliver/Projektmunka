@@ -13,7 +13,7 @@ namespace FitAppBackend.Api.Controllers
 {
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
         private readonly AppDbContext ctx;
@@ -29,29 +29,31 @@ namespace FitAppBackend.Api.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginRequestDto dto)
         {
-            var user = ctx.Users.SingleOrDefault(x => x.Email == dto.Email);
+            var email = dto.Email.Trim().ToLower();
+
+            var user = ctx.Users.SingleOrDefault(x => x.Email.ToLower() == email);
+
             if (user == null)
                 return Unauthorized("Nincs ilyen felhasználó");
 
-
-            var passwordHasher = new PasswordHasher<User>();
-            user.PasswordHash = passwordHasher.HashPassword(user, "jelszo123");
-            ctx.SaveChanges();
+            if (string.IsNullOrWhiteSpace(user.PasswordHash))
+                return Unauthorized("Ehhez a felhasználóhoz nincs jelszó beállítva.");
 
             var result = passwordHasher.VerifyHashedPassword(
-            user,
-            user.PasswordHash,
-            dto.Password);
+                user,
+                user.PasswordHash,
+                dto.Password
+            );
 
             if (result == PasswordVerificationResult.Failed)
                 return Unauthorized("Hibás jelszó");
 
             var token = GenerateJwt(user);
+
             return Ok(new LoginResponseDto
             {
                 Token = token
             });
-
         }
 
         private string GenerateJwt(User user)

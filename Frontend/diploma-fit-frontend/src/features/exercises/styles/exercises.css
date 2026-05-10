@@ -1,0 +1,152 @@
+.exercises-page {
+  padding: 30px;
+}
+
+.exercise-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(220px, 1fr));
+
+  gap: 24px;
+}
+
+.exercise-card {
+  border: none;
+  background: none;
+  padding: 0;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+}
+
+.exercise-card:hover {
+  transform: translateY(-4px);
+}
+
+.exercise-card-video {
+  position: relative;
+
+  height: 180px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #111;
+}
+
+.exercise-card-video video {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.exercise-card-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(0, 0, 0, 0.25);
+
+  opacity: 0;
+
+  transition: opacity 0.2s ease;
+}
+
+.exercise-card:hover .exercise-card-overlay {
+  opacity: 1;
+}
+
+.exercise-card-overlay span {
+  font-size: 52px;
+  color: white;
+}
+
+.exercise-card-name {
+  margin-top: 12px;
+
+  background: white;
+
+  border-radius: 14px;
+
+  padding: 14px;
+
+  font-weight: 600;
+
+  min-height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  box-shadow:
+    0 4px 14px rgba(0,0,0,0.08);
+}
+
+.exercise-modal-backdrop {
+  position: fixed;
+  inset: 0;
+
+  background:
+    rgba(0,0,0,0.7);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+}
+
+.exercise-modal-content {
+  width: 100%;
+  max-width: 600px;
+
+  background: #fff;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.exercise-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 24px;
+}
+
+.exercise-modal-header button {
+  border: none;
+  background: none;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+.exercise-modal-video {
+  width: auto;
+
+  max-width: 100%;
+  max-height: 60vh;
+
+  margin: 0 auto;
+
+  display: block;
+
+  background: #000;
+
+  object-fit: contain;
+
+  margin-bottom: 12px;
+}
