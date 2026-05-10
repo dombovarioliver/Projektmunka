@@ -32,5 +32,7 @@ namespace DiplomaFit.Model.Dto.User
         public int GoalDeltaKg { get; set; }
 
         public int GoalTimeWeeks { get; set; }
+
+        public string ProfilePictureUrl { get; set; } = string.Empty;
     }
 }

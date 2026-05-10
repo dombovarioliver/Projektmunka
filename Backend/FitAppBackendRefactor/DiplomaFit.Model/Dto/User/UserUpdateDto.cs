@@ -50,5 +50,7 @@ namespace DiplomaFit.Model.Dto.User
         [Required]
         [Range(0, 520)]
         public int GoalTimeWeeks { get; set; }
+
+        public string ProfilePictureUrl { get; set; } = string.Empty;
     }
 }

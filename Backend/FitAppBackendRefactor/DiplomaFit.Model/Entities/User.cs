@@ -58,5 +58,7 @@ namespace DiplomaFit.Model.Entities
         [Required]
         [Range(0, 8)]
         public int GoalTimeWeeks { get; set; }
+
+        public string ProfilePictureUrl { get; set; } = string.Empty;
     }
 }
