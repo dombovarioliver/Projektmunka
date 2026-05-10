@@ -21,7 +21,7 @@ namespace DiplomaFit.Model.Entities
         public string NameEn { get; set; } = null!;
 
         [StringLength(250)]
-        public string VideoUrl { get; set; } = null!;
+        public string VideoUrl { get; set; } = string.Empty;
 
         [StringLength(250)]
         public string PrimaryMuscleGroup { get; set; } = null!;      // pl. chest, back, legs, shoulders
