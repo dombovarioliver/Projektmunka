@@ -33,6 +33,7 @@ namespace DiplomaFit.Service.Dto
                 cfg.CreateMap<ExerciseCreateDto, Exercise>();
                 cfg.CreateMap<ExerciseUpdateDto, Exercise>();
                 cfg.CreateMap<Exercise, ExerciseResponseDto>();
+                cfg.CreateMap<Exercise, ExerciseVideoDto>();
             }));
         }
     }
