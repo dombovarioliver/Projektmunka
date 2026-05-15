@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
-import "../styles/loginPage.css";
+import "../styles/authPages.css";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -23,9 +23,9 @@ export default function LoginPage() {
       navigate("/");
     } catch (error) {
       console.error(error);
-
       setErrorMessage(
-        "Sikertelen bejelentkezés. Ellenőrizd az email címet és a jelszót."
+        error?.response?.data ||
+          "Sikertelen bejelentkezés. Ellenőrizd az email címet és a jelszót."
       );
     } finally {
       setIsSubmitting(false);
@@ -33,29 +33,26 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="login-page">
-      <div className="login-bg-orb login-bg-orb-one" />
-      <div className="login-bg-orb login-bg-orb-two" />
-      <div className="login-bg-grid" />
+    <main className="auth-page">
+      <div className="auth-bg-orb auth-bg-orb-one" />
+      <div className="auth-bg-orb auth-bg-orb-two" />
+      <div className="auth-bg-grid" />
 
-      <section className="login-shell">
-        <div className="login-info-panel">
-          <div className="login-badge">
+      <section className="auth-shell">
+        <div className="auth-info-panel">
+          <div className="auth-badge">
             <span />
             AI Fitness Platform
           </div>
 
-          <h1>
-            Lépj be, és kezeld az étrendedet, edzésedet és fejlődésedet egy
-            helyen.
-          </h1>
+          <h1>Lépj be, és kezeld az étrendedet, edzésedet és fejlődésedet.</h1>
 
           <p>
             A NeuraFit segít átláthatóan követni a napi kalóriákat, makrókat,
             edzésterveket és személyes célokat.
           </p>
 
-          <div className="login-info-cards">
+          <div className="auth-info-cards">
             <div>
               <strong>AI</strong>
               <span>étrendtervezés</span>
@@ -73,60 +70,58 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <div className="login-card">
-          <div className="login-logo-box">
-            <img
-              src="/src/assets/logo.png"
-              alt="NeuraFit logó"
-              className="login-logo-img"
-            />
+        <div className="auth-card">
+          <div className="auth-logo-box">
+            <div className="auth-logo-mark">N</div>
+            <div className="auth-logo-text">
+              <strong>NeuraFit</strong>
+              <span>AI Fitness</span>
+            </div>
           </div>
 
-          <div className="login-card-header">
+          <div className="auth-card-header">
             <h2>Üdv újra!</h2>
             <p>Jelentkezz be a folytatáshoz</p>
           </div>
 
           {errorMessage && (
-            <div className="login-error-message">{errorMessage}</div>
+            <div className="auth-error-message">{errorMessage}</div>
           )}
 
-          <form onSubmit={handleSubmit} className="login-form">
-            <div className="login-form-group">
+          <form onSubmit={handleSubmit} className="auth-form">
+            <div className="auth-form-group">
               <label>Email cím</label>
 
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="pelda@email.com"
                 required
               />
             </div>
 
-            <div className="login-form-group">
+            <div className="auth-form-group">
               <label>Jelszó</label>
 
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Add meg a jelszavad"
                 required
               />
             </div>
 
             <button
               type="submit"
-              className="login-submit-btn"
+              className="auth-submit-btn"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Bejelentkezés..." : "Bejelentkezés"}
             </button>
           </form>
 
-          <div className="login-bottom-text">
-            NeuraFit · okosabb fitnesz irányítás
+          <div className="auth-bottom-text">
+            Még nincs fiókod? <Link to="/register">Regisztráció</Link>
           </div>
         </div>
       </section>

@@ -3,13 +3,9 @@
   top: 0;
   z-index: 1000;
   width: 100%;
-  padding: 14px 28px;
+  padding: 12px 28px;
   background:
-    linear-gradient(
-      to bottom,
-      rgba(248, 249, 250, 0.95),
-      rgba(248, 249, 250, 0.72)
-    );
+    linear-gradient(to bottom, rgba(248, 250, 252, 0.94), rgba(248, 250, 252, 0.66));
   backdrop-filter: blur(18px);
 }
 
@@ -17,20 +13,16 @@
   width: min(1380px, 100%);
   min-height: 76px;
   margin: 0 auto;
-  padding: 10px 12px 10px 14px;
+  padding: 10px 12px 10px 16px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
   border-radius: 28px;
   background:
-    radial-gradient(
-      circle at top left,
-      rgba(124, 58, 237, 0.28),
-      transparent 34%
-    ),
-    linear-gradient(145deg, #171b25, #0f1420);
+    radial-gradient(circle at top left, rgba(124, 58, 237, 0.28), transparent 34%),
+    linear-gradient(145deg, #19142f, #101827 64%, #0f172a);
   border: 1px solid rgba(148, 163, 184, 0.24);
-  box-shadow: 0 20px 55px rgba(15, 23, 42, 0.18);
+  box-shadow: 0 20px 55px rgba(15, 23, 42, 0.22);
 }
 
 .neura-brand {
@@ -41,17 +33,26 @@
   text-decoration: none;
 }
 
-.neura-brand-icon {
-  width: 48px;
+.neura-brand-logo-wrap {
+  width: 58px;
   height: 48px;
   display: grid;
   place-items: center;
   border-radius: 18px;
-  color: #ffffff;
-  font-size: 24px;
-  font-weight: 950;
-  background: linear-gradient(135deg, #7c3aed, #2563eb);
-  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.32);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(96, 165, 250, 0.28), transparent 46%),
+    rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.22);
+  overflow: hidden;
+}
+
+.neura-brand-logo {
+  width: 52px;
+  height: 42px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 8px 16px rgba(37, 99, 235, 0.28));
 }
 
 .neura-brand-text strong,
@@ -62,7 +63,7 @@
 
 .neura-brand-text strong {
   color: #ffffff;
-  font-size: 22px;
+  font-size: 23px;
   font-weight: 950;
   letter-spacing: -0.04em;
 }
@@ -71,8 +72,8 @@
   margin-top: 6px;
   color: #93c5fd;
   font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-weight: 900;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
 }
 
@@ -89,7 +90,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 7px;
 }
 
 .neura-nav-link {
@@ -112,11 +113,7 @@
 
 .neura-nav-link.active {
   color: #ffffff;
-  background: linear-gradient(
-    135deg,
-    rgba(124, 58, 237, 0.96),
-    rgba(37, 99, 235, 0.96)
-  );
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.96), rgba(37, 99, 235, 0.96));
   box-shadow: 0 12px 24px rgba(37, 99, 235, 0.24);
 }
 
@@ -172,24 +169,25 @@
 
 .neura-profile-chip strong {
   color: #f8fafc;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 900;
 }
 
 .neura-profile-chip small {
   margin-top: 3px;
   color: #94a3b8;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 750;
 }
 
 .neura-logout-button {
-  min-height: 46px;
-  padding: 0 16px;
+  min-height: 48px;
+  padding: 0 18px;
   border: 0;
   border-radius: 16px;
   color: #dbeafe;
   background: #17243a;
+  font-size: 15px;
   font-weight: 900;
   cursor: pointer;
   transition: 0.2s;
@@ -234,7 +232,7 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1160px) {
   .neura-navbar {
     flex-wrap: wrap;
   }
@@ -293,10 +291,15 @@
     border-radius: 22px;
   }
 
-  .neura-brand-icon {
-    width: 44px;
+  .neura-brand-logo-wrap {
+    width: 52px;
     height: 44px;
     border-radius: 16px;
+  }
+
+  .neura-brand-logo {
+    width: 48px;
+    height: 38px;
   }
 
   .neura-brand-text strong {

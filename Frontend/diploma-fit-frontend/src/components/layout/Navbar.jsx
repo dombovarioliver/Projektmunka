@@ -7,7 +7,6 @@ import "./Navbar.css";
 export default function Navbar() {
   const { logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const [userData, setUserData] = useState({
     name: localStorage.getItem("name") || "Felhasználó",
     profilePictureUrl: localStorage.getItem("profilePictureUrl") || "",
@@ -44,8 +43,7 @@ export default function Navbar() {
       return url;
     }
 
-    const apiOrigin =
-      import.meta.env.VITE_API_ORIGIN || "http://localhost:8080";
+    const apiOrigin = import.meta.env.VITE_API_ORIGIN || "http://localhost:8080";
 
     return `${apiOrigin}${url.startsWith("/") ? "" : "/"}${url}`;
   }
@@ -72,7 +70,9 @@ export default function Navbar() {
     <header className="neura-navbar-shell">
       <nav className="neura-navbar">
         <Link className="neura-brand" to="/" onClick={closeMenu}>
-          <span className="neura-brand-icon">N</span>
+          <span className="neura-brand-logo-wrap">
+            <img src="/src/assets/logo_N.png" alt="NeuraFit logo" className="neura-brand-logo" />
+          </span>
 
           <span className="neura-brand-text">
             <strong>NeuraFit</strong>
@@ -82,9 +82,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className={
-            isMenuOpen ? "neura-menu-button active" : "neura-menu-button"
-          }
+          className={isMenuOpen ? "neura-menu-button active" : "neura-menu-button"}
           onClick={() => setIsMenuOpen((prev) => !prev)}
           aria-label="Menü megnyitása"
           aria-expanded={isMenuOpen}
@@ -94,11 +92,7 @@ export default function Navbar() {
           <span />
         </button>
 
-        <div
-          className={
-            isMenuOpen ? "neura-navbar-content open" : "neura-navbar-content"
-          }
-        >
+        <div className={isMenuOpen ? "neura-navbar-content open" : "neura-navbar-content"}>
           <div className="neura-nav-links">
             {navItems.map((item) => (
               <NavLink
@@ -120,9 +114,7 @@ export default function Navbar() {
               to="/profile"
               onClick={closeMenu}
               className={({ isActive }) =>
-                isActive
-                  ? "neura-profile-chip active"
-                  : "neura-profile-chip"
+                isActive ? "neura-profile-chip active" : "neura-profile-chip"
               }
             >
               <img
@@ -136,11 +128,7 @@ export default function Navbar() {
               </span>
             </NavLink>
 
-            <button
-              type="button"
-              className="neura-logout-button"
-              onClick={handleLogout}
-            >
+            <button type="button" className="neura-logout-button" onClick={handleLogout}>
               Kilépés
             </button>
           </div>
