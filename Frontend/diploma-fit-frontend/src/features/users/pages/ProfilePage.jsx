@@ -265,7 +265,7 @@ export default function ProfilePage() {
             </div>
 
             <div className="profile-form-group">
-              <label>Aktivitási szint</label>
+              <label>Aktivitási szint (1: nem aktív - 5: nagyon aktív)</label>
               <input
                 type="number"
                 min={1}

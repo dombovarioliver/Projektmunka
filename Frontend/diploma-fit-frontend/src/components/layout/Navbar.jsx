@@ -115,12 +115,13 @@ export default function Navbar() {
                   objectFit: "cover",
                   border: "2px solid rgba(255,255,255,0.3)",
                 }}
-              />
+                />
+                
 
               <span className="navbar-text fw-semibold text-white">
                 {userData.name}
               </span>
-
+             
               <button
                 className="btn btn-outline-light btn-sm ms-2"
                 onClick={logout}
