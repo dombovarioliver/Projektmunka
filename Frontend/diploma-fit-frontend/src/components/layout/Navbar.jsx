@@ -93,6 +93,12 @@ export default function Navbar() {
             </li>
 
             <li className="nav-item">
+              <NavLink className="nav-link" to="/diet-plan">
+                Étrend
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
               <NavLink className="nav-link" to="/chat">
                 Chat
               </NavLink>

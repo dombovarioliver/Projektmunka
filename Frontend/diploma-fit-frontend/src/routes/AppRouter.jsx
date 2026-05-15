@@ -9,6 +9,7 @@ import ChatPage from "../features/chat/pages/ChatPage";
 import ProfilePage from "../features/users/pages/ProfilePage";
 import GymsMapPage from "../features/gyms/pages/GymsMapPage";
 import LoginPage from "../features/auth/pages/LoginPage";
+import DietPlanPage from "../features/diet/pages/DietPlanPage";
 
 import { useAuth } from "../features/auth/context/useAuth";
 
@@ -43,6 +44,7 @@ export default function AppRouter() {
           <Route path="/gyms" element={<GymsMapPage />} />
           <Route path="/exercises" element={<ExercisesPage />} />
           <Route path="/workout-plan" element={<WorkoutPlanPage />} />
+          <Route path="/diet-plan" element={<DietPlanPage />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Route>
