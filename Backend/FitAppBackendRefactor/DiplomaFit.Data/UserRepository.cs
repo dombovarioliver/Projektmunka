@@ -1,4 +1,5 @@
 ﻿using DiplomaFit.Model.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,11 @@ namespace DiplomaFit.Data
         public User FindById(string id)
         {
             return ctx.Set<User>().FirstOrDefault(e => e.Id == id);
+        }
+
+        public async Task<User> FindByEmailAsync(string email)
+        {
+            return await ctx.Set<User>().FirstAsync(e => e.Email == email);
         }
 
         public async Task DeleteByIdAsync(string id)

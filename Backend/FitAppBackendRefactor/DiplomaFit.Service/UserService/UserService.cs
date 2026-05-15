@@ -49,6 +49,12 @@ namespace DiplomaFit.Service.UserService
             return _dtoProvider.Mapper.Map<UserResponseDto>(user);
         }
 
+        public async Task<UserResponseDto> FindByEmailAsync(string email)
+        {
+            var user = await _userRepository.FindByEmailAsync(email);
+            return _dtoProvider.Mapper.Map<UserResponseDto>(user);
+        }
+
         public async Task<List<UserResponseDto>> CreateManyAsync(List<UserCreateDto> dtos)
         {
             var users = dtos.Select(dto =>

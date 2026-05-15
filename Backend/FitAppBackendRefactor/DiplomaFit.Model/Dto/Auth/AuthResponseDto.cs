@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace DiplomaFit.Model.Dto.Auth
 {
-    public class LoginResponseDto
+    public class AuthResponseDto
     {
-        public string Token { get; set; } = string.Empty;
+        public string AccessToken { get; set; } = string.Empty;
 
-        public DateTime TokenExpiration { get; set; }
+        public DateTime AccessTokenExpiresAt { get; set; }
+
+        public string RefreshToken { get; set; } = string.Empty;
+
+        public DateTime RefreshTokenExpiresAt { get; set; }
 
         public string UserId { get; set; } = string.Empty;
 

@@ -28,6 +28,10 @@ namespace DiplomaFit.Model.Entities
         [StringLength(250)]
         public string? PasswordHash { get; set; }
 
+        public string? RefreshToken { get; set; }
+
+        public DateTime? RefreshTokenExpiresAt { get; set; }
+
         public Gender Gender { get; set; }
 
         [Required]
@@ -42,20 +46,15 @@ namespace DiplomaFit.Model.Entities
         [Range(0,500)]
         public double WeightKg { get; set; }
 
-        [Range(0,70)]
         public double? BodyfatPercent { get; set; }
 
-        [Required]
         public Activity ActivityLevel { get; set; }
 
-        [Required]
         public Goal GoalType { get; set; } 
 
-        [Required]
         [Range(-500, 500)]
         public int GoalDeltaKg { get; set; }
 
-        [Required]
         [Range(0, 8)]
         public int GoalTimeWeeks { get; set; }
 
