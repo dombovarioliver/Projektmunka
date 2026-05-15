@@ -1,0 +1,305 @@
+.neura-navbar-shell {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  padding: 14px 28px;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(248, 249, 250, 0.95),
+      rgba(248, 249, 250, 0.72)
+    );
+  backdrop-filter: blur(18px);
+}
+
+.neura-navbar {
+  width: min(1380px, 100%);
+  min-height: 76px;
+  margin: 0 auto;
+  padding: 10px 12px 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 28px;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(124, 58, 237, 0.28),
+      transparent 34%
+    ),
+    linear-gradient(145deg, #171b25, #0f1420);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  box-shadow: 0 20px 55px rgba(15, 23, 42, 0.18);
+}
+
+.neura-brand {
+  min-width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.neura-brand-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 950;
+  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.32);
+}
+
+.neura-brand-text strong,
+.neura-brand-text small {
+  display: block;
+  line-height: 1;
+}
+
+.neura-brand-text strong {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.neura-brand-text small {
+  margin-top: 6px;
+  color: #93c5fd;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.neura-navbar-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.neura-nav-links {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.neura-nav-link {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 18px;
+  border-radius: 16px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 850;
+  transition: 0.2s;
+}
+
+.neura-nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.075);
+}
+
+.neura-nav-link.active {
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.96),
+    rgba(37, 99, 235, 0.96)
+  );
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.24);
+}
+
+.neura-user-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.neura-profile-chip {
+  min-height: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px 6px 6px;
+  border-radius: 999px;
+  color: #ffffff;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.065);
+  border: 1px solid rgba(255, 255, 255, 0.095);
+  transition: 0.2s;
+}
+
+.neura-profile-chip:hover,
+.neura-profile-chip.active {
+  transform: translateY(-1px);
+  background: rgba(96, 165, 250, 0.13);
+  border-color: rgba(96, 165, 250, 0.36);
+}
+
+.neura-profile-chip img {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  background: #17243a;
+}
+
+.neura-profile-chip span {
+  max-width: 160px;
+  display: block;
+}
+
+.neura-profile-chip strong,
+.neura-profile-chip small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.neura-profile-chip strong {
+  color: #f8fafc;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.neura-profile-chip small {
+  margin-top: 3px;
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.neura-logout-button {
+  min-height: 46px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 16px;
+  color: #dbeafe;
+  background: #17243a;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.neura-logout-button:hover {
+  color: #ffffff;
+  background: rgba(239, 68, 68, 0.92);
+  transform: translateY(-1px);
+}
+
+.neura-menu-button {
+  display: none;
+  width: 48px;
+  height: 48px;
+  margin-left: auto;
+  border: 0;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.075);
+  cursor: pointer;
+}
+
+.neura-menu-button span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 5px auto;
+  border-radius: 999px;
+  background: #ffffff;
+  transition: 0.2s;
+}
+
+.neura-menu-button.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.neura-menu-button.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.neura-menu-button.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 1100px) {
+  .neura-navbar {
+    flex-wrap: wrap;
+  }
+
+  .neura-menu-button {
+    display: block;
+  }
+
+  .neura-navbar-content {
+    display: none;
+    width: 100%;
+    flex: 0 0 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 0 4px;
+  }
+
+  .neura-navbar-content.open {
+    display: flex;
+  }
+
+  .neura-nav-links {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .neura-nav-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .neura-user-area {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .neura-profile-chip,
+  .neura-logout-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .neura-profile-chip span {
+    max-width: unset;
+  }
+}
+
+@media (max-width: 520px) {
+  .neura-navbar-shell {
+    padding: 10px 8px;
+  }
+
+  .neura-navbar {
+    border-radius: 22px;
+  }
+
+  .neura-brand-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 16px;
+  }
+
+  .neura-brand-text strong {
+    font-size: 19px;
+  }
+}

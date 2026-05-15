@@ -109,6 +109,7 @@ export default function ProfilePage() {
       setUser(updatedData);
 
       localStorage.setItem("profilePictureUrl", result.profilePictureUrl || "");
+      window.dispatchEvent(new Event("profileUpdated"));
     } catch (err) {
       console.error("Profilkép feltöltési hiba:", err);
     } finally {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
+import "../styles/loginPage.css";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -19,7 +20,6 @@ export default function LoginPage() {
 
     try {
       await login(email, password);
-
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -33,54 +33,103 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-vh-100 d-flex align-items-center justify-content-center bg-light">
-      <div className="card shadow-sm border-0" style={{ width: "420px" }}>
-        <div className="card-body p-4">
-          <h1 className="h3 fw-bold mb-2 text-center">NeuraFit</h1>
+    <main className="login-page">
+      <div className="login-bg-orb login-bg-orb-one" />
+      <div className="login-bg-orb login-bg-orb-two" />
+      <div className="login-bg-grid" />
 
-          <p className="text-muted text-center mb-4">
-            Jelentkezz be a folytatáshoz
+      <section className="login-shell">
+        <div className="login-info-panel">
+          <div className="login-badge">
+            <span />
+            AI Fitness Platform
+          </div>
+
+          <h1>
+            Lépj be, és kezeld az étrendedet, edzésedet és fejlődésedet egy
+            helyen.
+          </h1>
+
+          <p>
+            A NeuraFit segít átláthatóan követni a napi kalóriákat, makrókat,
+            edzésterveket és személyes célokat.
           </p>
 
+          <div className="login-info-cards">
+            <div>
+              <strong>AI</strong>
+              <span>étrendtervezés</span>
+            </div>
+
+            <div>
+              <strong>24/7</strong>
+              <span>követés</span>
+            </div>
+
+            <div>
+              <strong>100%</strong>
+              <span>személyre szabva</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="login-card">
+          <div className="login-logo-box">
+            <img
+              src="/src/assets/logo.png"
+              alt="NeuraFit logó"
+              className="login-logo-img"
+            />
+          </div>
+
+          <div className="login-card-header">
+            <h2>Üdv újra!</h2>
+            <p>Jelentkezz be a folytatáshoz</p>
+          </div>
+
           {errorMessage && (
-            <div className="alert alert-danger">{errorMessage}</div>
+            <div className="login-error-message">{errorMessage}</div>
           )}
 
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label className="form-label">Email cím</label>
+          <form onSubmit={handleSubmit} className="login-form">
+            <div className="login-form-group">
+              <label>Email cím</label>
 
               <input
                 type="email"
-                className="form-control"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                placeholder="pelda@email.com"
                 required
               />
             </div>
 
-            <div className="mb-3">
-              <label className="form-label">Jelszó</label>
+            <div className="login-form-group">
+              <label>Jelszó</label>
 
               <input
                 type="password"
-                className="form-control"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="Add meg a jelszavad"
                 required
               />
             </div>
 
             <button
               type="submit"
-              className="btn btn-dark w-100"
+              className="login-submit-btn"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Bejelentkezés..." : "Bejelentkezés"}
             </button>
           </form>
+
+          <div className="login-bottom-text">
+            NeuraFit · okosabb fitnesz irányítás
+          </div>
         </div>
-      </div>
+      </section>
     </main>
   );
 }
