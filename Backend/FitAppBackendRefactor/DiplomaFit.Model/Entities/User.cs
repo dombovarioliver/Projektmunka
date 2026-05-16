@@ -1,12 +1,6 @@
 ﻿using DiplomaFit.Model.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiplomaFit.Model.Entities
 {
@@ -67,5 +61,9 @@ namespace DiplomaFit.Model.Entities
         public virtual ICollection<ChatMessage> SentMessages { get; set; } = new List<ChatMessage>();
 
         public virtual ICollection<ChatMessage> ReceivedMessages { get; set; } = new List<ChatMessage>();
+
+        public virtual ICollection<ChatConversationMember> ChatMemberships { get; set; } = new List<ChatConversationMember>();
+
+        public virtual ICollection<ChatMessageRead> ReadMessages { get; set; } = new List<ChatMessageRead>();
     }
 }

@@ -9,11 +9,12 @@ namespace DiplomaFit.Model.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
+        public string? ConversationId { get; set; }
+
         [Required]
         public string SenderId { get; set; } = string.Empty;
 
-        [Required]
-        public string ReceiverId { get; set; } = string.Empty;
+        public string? ReceiverId { get; set; }
 
         [Required]
         [StringLength(2000)]
@@ -23,8 +24,12 @@ namespace DiplomaFit.Model.Entities
 
         public DateTime? ReadAt { get; set; }
 
+        public virtual ChatConversation? Conversation { get; set; }
+
         public virtual User? Sender { get; set; }
 
         public virtual User? Receiver { get; set; }
+
+        public virtual ICollection<ChatMessageRead> Reads { get; set; } = new List<ChatMessageRead>();
     }
 }

@@ -12,8 +12,6 @@ import {
   sendFriendRequest,
 } from "../services/friendService";
 
-import { requestNavbarNotificationRefresh } from "../../notifications/services/notificationService";
-
 import "../styles/friends.css";
 
 function getProfileImageUrl(url, name) {
@@ -56,7 +54,6 @@ export default function FriendsPage() {
       setFriends(friendsData);
       setIncomingRequests(incomingData);
       setOutgoingRequests(outgoingData);
-      requestNavbarNotificationRefresh();
     } catch (error) {
       console.error("Barátlista betöltési hiba:", error);
       setMessage("Nem sikerült betölteni a barátlistát.");
@@ -104,7 +101,6 @@ export default function FriendsPage() {
       const result = await sendFriendRequest(userId);
       setMessage(result?.message || "Barátkérelem elküldve.");
       await loadFriendsData();
-      requestNavbarNotificationRefresh();
       if (hasSearchTerm) setSearchResults(await searchUsers(searchTerm.trim()));
     } catch (error) {
       setMessage(error.response?.data || "Nem sikerült elküldeni a barátkérelmet.");
@@ -116,7 +112,6 @@ export default function FriendsPage() {
       const result = await acceptFriendRequest(friendshipId);
       setMessage(result?.message || "Barátkérelem elfogadva.");
       await loadFriendsData();
-      requestNavbarNotificationRefresh();
     } catch (error) {
       setMessage(error.response?.data || "Nem sikerült elfogadni a kérelmet.");
     }
@@ -127,7 +122,6 @@ export default function FriendsPage() {
       const result = await rejectFriendRequest(friendshipId);
       setMessage(result?.message || "Barátkérelem elutasítva.");
       await loadFriendsData();
-      requestNavbarNotificationRefresh();
     } catch (error) {
       setMessage(error.response?.data || "Nem sikerült elutasítani a kérelmet.");
     }
@@ -138,7 +132,6 @@ export default function FriendsPage() {
       await removeFriend(friendId);
       setMessage("Barát törölve.");
       await loadFriendsData();
-      requestNavbarNotificationRefresh();
     } catch (error) {
       setMessage(error.response?.data || "Nem sikerült törölni a barátot.");
     }
