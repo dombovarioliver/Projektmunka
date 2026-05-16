@@ -57,8 +57,8 @@ namespace DiplomaFit.Service.DietService
                 DailyProtein = Math.Round(prediction.ProteinG, 1),
                 DailyCarbs = Math.Round(prediction.CarbsG, 1),
                 DailyFat = Math.Round(prediction.FatG, 1),
-                MealsPerDay = (int)Math.Round(prediction.MealsPerDay),
-                SnacksPerDay = (int)Math.Round(prediction.SnacksPerDay)
+                MealsPerDay = 3,
+                SnacksPerDay = 2
             };
 
             for (int day = 1; day <= 7; day++)
@@ -77,10 +77,7 @@ namespace DiplomaFit.Service.DietService
 
                 foreach (var meal in meals)
                 {
-                    var selectedFoods = PickFoodsForMeal(foods, meal.MealCategory, 3);
-
-                    DistributeMealTargets(meal, selectedFoods);
-
+                    BuildRealisticMeal(meal, foods);
                     dayPlan.Meals.Add(meal);
                 }
 
@@ -100,7 +97,7 @@ namespace DiplomaFit.Service.DietService
             {
                 CreateMeal(MealType.Breakfast, MealType.Breakfast, 0.25, dailyCalories, dailyProtein, dailyCarbs, dailyFat),
                 CreateMeal(MealType.Main, MealType.Main, 0.35, dailyCalories, dailyProtein, dailyCarbs, dailyFat),
-                CreateMeal(MealType.Main, MealType.Main, 0.25, dailyCalories, dailyProtein, dailyCarbs, dailyFat),
+                CreateMeal(MealType.Dinner, MealType.Dinner, 0.25, dailyCalories, dailyProtein, dailyCarbs, dailyFat),
                 CreateMeal(MealType.Snack, MealType.Snack, 0.075, dailyCalories, dailyProtein, dailyCarbs, dailyFat),
                 CreateMeal(MealType.Snack, MealType.Snack, 0.075, dailyCalories, dailyProtein, dailyCarbs, dailyFat)
             };
@@ -126,59 +123,178 @@ namespace DiplomaFit.Service.DietService
             };
         }
 
-        private List<Food> PickFoodsForMeal(
-            List<Food> allFoods,
-            MealType mealCategory,
-            int count)
-        {
-            var candidates = allFoods
-                .Where(food =>
-                    food.MealType == mealCategory ||
-                    food.MealType == MealType.Any)
-                .ToList();
-
-            if (!candidates.Any())
-                candidates = allFoods.ToList();
-
-            return candidates
-                .OrderBy(_ => _random.Next())
-                .Take(Math.Min(count, candidates.Count))
-                .ToList();
-        }
-
-        private void DistributeMealTargets(MealDto meal, List<Food> foods)
+        private void BuildRealisticMeal(MealDto meal, List<Food> allFoods)
         {
             meal.Items.Clear();
 
-            if (!foods.Any() || meal.TargetCalories <= 0)
+            if (meal.TargetCalories <= 0)
                 return;
 
-            var caloriesPerFood = meal.TargetCalories / foods.Count;
-
-            foreach (var food in foods)
+            if (meal.MealType == MealType.Breakfast)
             {
-                var kcalPerGram = food.KcalPer100 / 100.0;
-
-                if (kcalPerGram <= 0)
-                    continue;
-
-                var grams = caloriesPerFood / kcalPerGram;
-                var factor = grams / 100.0;
-
-                meal.Items.Add(new MealItemDto
-                {
-                    FoodId = food.FoodId,
-                    FoodName = string.IsNullOrWhiteSpace(food.FoodNameHu)
-                        ? food.FoodNameEn
-                        : food.FoodNameHu,
-
-                    QuantityGrams = Math.Round(grams, 1),
-                    Calories = Math.Round(food.KcalPer100 * factor, 1),
-                    Protein = Math.Round(food.ProteinGPer100 * factor, 1),
-                    Carbs = Math.Round(food.CarbsGPer100 * factor, 1),
-                    Fat = Math.Round(food.FatGPer100 * factor, 1)
-                });
+                AddFoodByCategory(meal, allFoods, FoodCategory.BreakfastBase, 0.45);
+                AddFoodByAnyCategory(meal, allFoods, new[] { FoodCategory.ProteinSource, FoodCategory.Dairy }, 0.35);
+                AddFoodByCategory(meal, allFoods, FoodCategory.Fruit, 0.20);
             }
+            else if (meal.MealType == MealType.Snack)
+            {
+                AddFoodByAnyCategory(meal, allFoods, new[]
+                {
+                    FoodCategory.ProteinSupplement,
+                    FoodCategory.Dairy,
+                    FoodCategory.Fruit,
+                    FoodCategory.NutsAndSeeds,
+                    FoodCategory.Snack
+                }, 1.00);
+            }
+            else
+            {
+                var useCompleteMeal = _random.NextDouble() < 0.35 && HasCandidate(allFoods, meal, FoodCategory.CompleteMeal);
+
+                if (useCompleteMeal)
+                {
+                    AddFoodByCategory(meal, allFoods, FoodCategory.CompleteMeal, 0.82);
+                    AddFoodByCategory(meal, allFoods, FoodCategory.VegetableSide, 0.18);
+                }
+                else
+                {
+                    AddFoodByCategory(meal, allFoods, FoodCategory.ProteinSource, 0.45);
+                    AddFoodByCategory(meal, allFoods, FoodCategory.CarbSide, 0.35);
+                    AddFoodByCategory(meal, allFoods, FoodCategory.VegetableSide, 0.20);
+                }
+            }
+
+            AddSmallFillerIfNeeded(meal, allFoods);
+        }
+
+        private bool HasCandidate(List<Food> foods, MealDto meal, FoodCategory category)
+        {
+            return foods.Any(food => IsMealCompatible(food, meal.MealType, meal.MealCategory) && food.FoodCategory == category);
+        }
+
+        private void AddFoodByCategory(
+            MealDto meal,
+            List<Food> allFoods,
+            FoodCategory category,
+            double calorieRatio)
+        {
+            var food = PickFood(allFoods, meal, new[] { category });
+
+            if (food == null)
+                return;
+
+            AddFoodItem(meal, food, meal.TargetCalories * calorieRatio);
+        }
+
+        private void AddFoodByAnyCategory(
+            MealDto meal,
+            List<Food> allFoods,
+            IReadOnlyCollection<FoodCategory> categories,
+            double calorieRatio)
+        {
+            var food = PickFood(allFoods, meal, categories);
+
+            if (food == null)
+                return;
+
+            AddFoodItem(meal, food, meal.TargetCalories * calorieRatio);
+        }
+
+        private Food? PickFood(
+            List<Food> allFoods,
+            MealDto meal,
+            IReadOnlyCollection<FoodCategory> categories)
+        {
+            var candidates = allFoods
+                .Where(food =>
+                    IsMealCompatible(food, meal.MealType, meal.MealCategory) &&
+                    categories.Contains(food.FoodCategory))
+                .OrderBy(_ => _random.Next())
+                .ToList();
+
+            if (candidates.Any())
+                return candidates.First();
+
+            return allFoods
+                .Where(food => categories.Contains(food.FoodCategory))
+                .OrderBy(_ => _random.Next())
+                .FirstOrDefault();
+        }
+
+        private bool IsMealCompatible(Food food, MealType mealType, MealType mealCategory)
+        {
+            if (food.MealType == MealType.Any)
+                return true;
+
+            if (food.MealType == mealCategory || food.MealType == mealType)
+                return true;
+
+            // A főétel típusú ételeket vacsorára is engedjük, mert az adatbázisban a legtöbb hús/köret MealType.Main.
+            if (mealType == MealType.Dinner && food.MealType == MealType.Main)
+                return true;
+
+            return false;
+        }
+
+        private void AddFoodItem(MealDto meal, Food food, double targetCaloriesForFood)
+        {
+            if (food.KcalPer100 <= 0 || targetCaloriesForFood <= 0)
+                return;
+
+            var rawGrams = targetCaloriesForFood / (food.KcalPer100 / 100.0);
+            var grams = ClampAndRoundPortion(rawGrams, food.MinPortionGrams, food.MaxPortionGrams);
+            var factor = grams / 100.0;
+
+            meal.Items.Add(new MealItemDto
+            {
+                FoodId = food.FoodId,
+                FoodName = string.IsNullOrWhiteSpace(food.FoodNameHu)
+                    ? food.FoodNameEn
+                    : food.FoodNameHu,
+
+                QuantityGrams = grams,
+                Calories = Math.Round(food.KcalPer100 * factor, 1),
+                Protein = Math.Round(food.ProteinGPer100 * factor, 1),
+                Carbs = Math.Round(food.CarbsGPer100 * factor, 1),
+                Fat = Math.Round(food.FatGPer100 * factor, 1)
+            });
+        }
+
+        private double ClampAndRoundPortion(double grams, double minGrams, double maxGrams)
+        {
+            var safeMin = minGrams <= 0 ? 50 : minGrams;
+            var safeMax = maxGrams <= 0 ? 250 : maxGrams;
+
+            if (safeMax < safeMin)
+                safeMax = safeMin;
+
+            var clamped = Math.Clamp(grams, safeMin, safeMax);
+
+            // 5 grammos lépcső, hogy emberibb adagok legyenek: 95g, 120g, 175g stb.
+            return Math.Round(clamped / 5.0) * 5.0;
+        }
+
+        private void AddSmallFillerIfNeeded(MealDto meal, List<Food> allFoods)
+        {
+            var currentCalories = meal.Items.Sum(item => item.Calories);
+            var missingCalories = meal.TargetCalories - currentCalories;
+
+            if (missingCalories < 120)
+                return;
+
+            if (meal.MealType == MealType.Snack)
+            {
+                AddFoodByAnyCategory(meal, allFoods, new[] { FoodCategory.NutsAndSeeds, FoodCategory.Fruit }, 0.45);
+                return;
+            }
+
+            if (meal.MealType == MealType.Breakfast)
+            {
+                AddFoodByAnyCategory(meal, allFoods, new[] { FoodCategory.Dairy, FoodCategory.Fruit }, 0.25);
+                return;
+            }
+
+            AddFoodByAnyCategory(meal, allFoods, new[] { FoodCategory.CarbSide, FoodCategory.ProteinSource }, 0.20);
         }
     }
 }

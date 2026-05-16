@@ -59,5 +59,7 @@ namespace DiplomaFit.Model.Dto.Exercise
         public int DefaultRepsHigh { get; set; }
 
         public bool IsHomeFriendly { get; set; }
+
+        public string VideoUrl { get; set; } = string.Empty;
     }
 }

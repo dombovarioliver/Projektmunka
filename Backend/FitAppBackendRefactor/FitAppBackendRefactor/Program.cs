@@ -3,8 +3,12 @@ using DiplomaFit.Service.DietService;
 using DiplomaFit.Service.Dto;
 using DiplomaFit.Service.ExerciseService;
 using DiplomaFit.Service.FoodService;
+using DiplomaFit.Service.GymService;
 using DiplomaFit.Service.UserService;
 using DiplomaFit.Service.WorkoutService;
+using FitAppBackendRefactor.Hubs;
+using DiplomaFit.Service.FriendService;
+using DiplomaFit.Service.ChatService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Controllers + Swagger
 builder.Services.AddControllers();
+builder.Services.AddSignalR();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -39,7 +44,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(option =>
 {
-    option.SwaggerDoc("v1", new OpenApiInfo { Title = "MovieClub API", Version = "v1" });
+    option.SwaggerDoc("v1", new OpenApiInfo { Title = "NeuraFit", Version = "v1" });
     option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -67,35 +72,61 @@ new string[]{}
 
 //JWT
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.SaveToken = true;
-    options.RequireHttpsMetadata = false;
+var jwtKey = builder.Configuration["Jwt:Key"];
 
-    options.TokenValidationParameters = new TokenValidationParameters
+if (string.IsNullOrWhiteSpace(jwtKey))
+{
+    throw new InvalidOperationException("Jwt:Key nincs beállítva.");
+}
+
+builder.Services
+    .AddAuthentication(options =>
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
 
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
 
-        IssuerSigningKey = new SymmetricSecurityKey(
-        Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)
-        ),
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
 
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(jwtKey)
+            ),
 
-        ClockSkew = TimeSpan.Zero
-    };
-});
+            ClockSkew = TimeSpan.Zero
+        };
+
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var accessToken = context.Request.Query["access_token"];
+                var path = context.HttpContext.Request.Path;
+
+                if (!string.IsNullOrEmpty(accessToken) &&
+                    path.StartsWithSegments("/hubs/chat"))
+                {
+                    context.Token = accessToken;
+                }
+
+                return Task.CompletedTask;
+            }
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 //Connection string (local + docker fallback)
 var connectionString =
@@ -133,9 +164,13 @@ builder.Services.AddScoped<ExerciseRepository>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<FoodService>();
 builder.Services.AddScoped<ExerciseService>();
+builder.Services.AddScoped<FriendService>();
+builder.Services.AddScoped<ChatService>();
 
 builder.Services.AddScoped<DietPlanService>();
 builder.Services.AddScoped<WorkoutPlanService>();
+
+builder.Services.AddHttpClient<GooglePlacesGymService>();
 
 // 🌐 HttpClient → ML API
 builder.Services.AddHttpClient<DietMlClientService>(client =>
@@ -180,6 +215,8 @@ using (var scope = app.Services.CreateScope())
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseStaticFiles();
+
 //CORS
 app.UseCors("frontend");
 
@@ -187,5 +224,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<ChatHub>("/hubs/chat");
 
 app.Run();

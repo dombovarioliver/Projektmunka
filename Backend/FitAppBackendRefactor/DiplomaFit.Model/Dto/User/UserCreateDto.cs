@@ -37,17 +37,17 @@ namespace DiplomaFit.Model.Dto.User
         [Range(0, 70)]
         public double? BodyfatPercent { get; set; }
 
-        [Required]
+       
         public Activity ActivityLevel { get; set; }
 
-        [Required]
+        
         public Goal GoalType { get; set; }
 
-        [Required]
+        
         [Range(-500, 500)]
         public int GoalDeltaKg { get; set; }
 
-        [Required]
+        
         [Range(0, 520)]
         public int GoalTimeWeeks { get; set; }
     }

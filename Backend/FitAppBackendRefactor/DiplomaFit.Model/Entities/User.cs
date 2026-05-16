@@ -1,12 +1,6 @@
 ﻿using DiplomaFit.Model.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiplomaFit.Model.Entities
 {
@@ -25,9 +19,12 @@ namespace DiplomaFit.Model.Entities
         [StringLength(250)]
         public string Email { get; set; }
 
-        [Required]
         [StringLength(250)]
-        public string PasswordHash { get; set; }
+        public string? PasswordHash { get; set; }
+
+        public string? RefreshToken { get; set; }
+
+        public DateTime? RefreshTokenExpiresAt { get; set; }
 
         public Gender Gender { get; set; }
 
@@ -43,21 +40,30 @@ namespace DiplomaFit.Model.Entities
         [Range(0,500)]
         public double WeightKg { get; set; }
 
-        [Range(0,70)]
         public double? BodyfatPercent { get; set; }
 
-        [Required]
         public Activity ActivityLevel { get; set; }
 
-        [Required]
         public Goal GoalType { get; set; } 
 
-        [Required]
         [Range(-500, 500)]
         public int GoalDeltaKg { get; set; }
 
-        [Required]
         [Range(0, 8)]
         public int GoalTimeWeeks { get; set; }
+
+        public string ProfilePictureUrl { get; set; } = string.Empty;
+
+        public virtual ICollection<Friendship> SentFriendRequests { get; set; } = new List<Friendship>();
+
+        public virtual ICollection<Friendship> ReceivedFriendRequests { get; set; } = new List<Friendship>();
+
+        public virtual ICollection<ChatMessage> SentMessages { get; set; } = new List<ChatMessage>();
+
+        public virtual ICollection<ChatMessage> ReceivedMessages { get; set; } = new List<ChatMessage>();
+
+        public virtual ICollection<ChatConversationMember> ChatMemberships { get; set; } = new List<ChatConversationMember>();
+
+        public virtual ICollection<ChatMessageRead> ReadMessages { get; set; } = new List<ChatMessageRead>();
     }
 }

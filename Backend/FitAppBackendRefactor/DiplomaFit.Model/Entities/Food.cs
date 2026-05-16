@@ -21,6 +21,16 @@ namespace DiplomaFit.Model.Entities
         [StringLength(250)]
         public string FoodNameEn { get; set; } = null!;
 
+        public MealType MealType { get; set; }
+
+        public FoodCategory FoodCategory { get; set; } = FoodCategory.Other;
+
+        [Range(1, 2000)]
+        public double MinPortionGrams { get; set; } = 50;
+
+        [Range(1, 2000)]
+        public double MaxPortionGrams { get; set; } = 250;
+
         [Range(0, 2000)]
         public double KcalPer100 { get; set; }
 
@@ -32,8 +42,5 @@ namespace DiplomaFit.Model.Entities
 
         [Range(0, 2000)]
         public double FatGPer100 { get; set; }
-
-        public MealType MealType { get; set; }
-
     }
 }

@@ -87,5 +87,13 @@ namespace DiplomaFit.Service.ExerciseService
 
             return true;
         }
+
+        public ExerciseVideoDto? GetVideoById(string id)
+        {
+            var exercise = _exerciseRepository.FindById(id);
+            if (exercise == null)
+                return null;
+            return _dtoProvider.Mapper.Map<ExerciseVideoDto>(exercise);
+        }
     }
 }

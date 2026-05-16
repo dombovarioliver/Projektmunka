@@ -1,80 +1,140 @@
 import { NavLink, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import { useAuth } from "../../features/auth/context/useAuth";
+import "./Navbar.css";
 
 export default function Navbar() {
-  const { userEmail, logout } = useAuth();
+  const { logout } = useAuth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [userData, setUserData] = useState({
+    name: localStorage.getItem("name") || "Felhasználó",
+    profilePictureUrl: localStorage.getItem("profilePictureUrl") || "",
+  });
+
+  useEffect(() => {
+    function loadUserData() {
+      setUserData({
+        name: localStorage.getItem("name") || "Felhasználó",
+        profilePictureUrl: localStorage.getItem("profilePictureUrl") || "",
+      });
+    }
+
+    loadUserData();
+
+    window.addEventListener("storage", loadUserData);
+    window.addEventListener("profileUpdated", loadUserData);
+
+    return () => {
+      window.removeEventListener("storage", loadUserData);
+      window.removeEventListener("profileUpdated", loadUserData);
+    };
+  }, []);
+
+  function getProfileImageUrl(url) {
+    if (!url || url.trim() === "") {
+      return (
+        "https://ui-avatars.com/api/?background=2563eb&color=ffffff&bold=true&name=" +
+        encodeURIComponent(userData.name || "User")
+      );
+    }
+
+    if (url.startsWith("http")) {
+      return url;
+    }
+
+    const apiOrigin = import.meta.env.VITE_API_ORIGIN || "http://localhost:8080";
+
+    return `${apiOrigin}${url.startsWith("/") ? "" : "/"}${url}`;
+  }
+
+  function closeMenu() {
+    setIsMenuOpen(false);
+  }
+
+  function handleLogout() {
+    closeMenu();
+    logout();
+  }
+
+  const navItems = [
+    { to: "/", label: "Főoldal" },
+    { to: "/gyms", label: "Konditermek" },
+    { to: "/exercises", label: "Gyakorlatok" },
+    { to: "/workout-plan", label: "Edzésterv" },
+    { to: "/diet-plan", label: "Étrend" },
+    { to: "/friends", label: "Barátok" },
+    { to: "/chat", label: "Chat" },
+  ];
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container">
-        <Link className="navbar-brand fw-bold" to="/">
-          NeuraFit
+    <header className="neura-navbar-shell">
+      <nav className="neura-navbar">
+        <Link className="neura-brand" to="/" onClick={closeMenu}>
+          <span className="neura-brand-logo-wrap">
+            <img src="/src/assets/logo_N.png" alt="NeuraFit logo" className="neura-brand-logo" />
+          </span>
+
+          <span className="neura-brand-text">
+            <strong>NeuraFit</strong>
+            <small>AI Fitness</small>
+          </span>
         </Link>
 
         <button
-          className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
-          aria-controls="mainNavbar"
-          aria-expanded="false"
+          className={isMenuOpen ? "neura-menu-button active" : "neura-menu-button"}
+          onClick={() => setIsMenuOpen((prev) => !prev)}
           aria-label="Menü megnyitása"
+          aria-expanded={isMenuOpen}
         >
-          <span className="navbar-toggler-icon"></span>
+          <span />
+          <span />
+          <span />
         </button>
 
-        <div className="collapse navbar-collapse" id="mainNavbar">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/">
-                Főoldal
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/gyms">
-                Konditermek
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/exercises">
-                Gyakorlatok
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/workout-plan">
-                Edzésterv
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/chat">
-                Chat
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/profile">
-                Profil
-              </NavLink>
-            </li>
-
-            <li className="nav-item d-flex align-items-center ms-lg-3">
-              <span className="navbar-text me-3">{userEmail}</span>
-
-              <button
-                className="btn btn-outline-light btn-sm"
-                onClick={logout}
+        <div className={isMenuOpen ? "neura-navbar-content open" : "neura-navbar-content"}>
+          <div className="neura-nav-links">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.to === "/"}
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  isActive ? "neura-nav-link active" : "neura-nav-link"
+                }
               >
-                Kilépés
-              </button>
-            </li>
-          </ul>
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+
+          <div className="neura-user-area">
+            <NavLink
+              to="/profile"
+              onClick={closeMenu}
+              className={({ isActive }) =>
+                isActive ? "neura-profile-chip active" : "neura-profile-chip"
+              }
+            >
+              <img
+                src={getProfileImageUrl(userData.profilePictureUrl)}
+                alt="Profilkép"
+              />
+
+              <span>
+                <strong>{userData.name}</strong>
+                <small>Profil</small>
+              </span>
+            </NavLink>
+
+            <button type="button" className="neura-logout-button" onClick={handleLogout}>
+              Kilépés
+            </button>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }

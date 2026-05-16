@@ -72,5 +72,14 @@ namespace FitAppBackendRefactor.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("{id}/video")]
+        public IActionResult GetVideoById(string id)
+        {
+            var video = _exerciseService.GetVideoById(id);
+            if (video == null)
+                return NotFound();
+            return Ok(video);
+        }
     }
 }

@@ -25,6 +25,137 @@ namespace DiplomaFit.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DiplomaFit.Model.Entities.ChatConversation", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsGroup")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.ToTable("ChatConversations");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.ChatConversationMember", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConversationId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("JoinedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nickname")
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<string>("QuickEmoji")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("ConversationId", "UserId")
+                        .IsUnique();
+
+                    b.ToTable("ChatConversationMembers");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.ChatMessage", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConversationId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("ReadAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReceiverId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SenderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("SentAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("ConversationId", "SentAt");
+
+                    b.HasIndex("SenderId", "ReceiverId", "SentAt");
+
+                    b.ToTable("ChatMessages");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.ChatMessageRead", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MessageId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("ReadAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("MessageId", "UserId")
+                        .IsUnique();
+
+                    b.ToTable("ChatMessageReads");
+                });
+
             modelBuilder.Entity("DiplomaFit.Model.Entities.Exercise", b =>
                 {
                     b.Property<string>("ExerciseId")
@@ -92,6 +223,11 @@ namespace DiplomaFit.Data.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<string>("VideoUrl")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
                     b.HasKey("ExerciseId");
 
                     b.ToTable("Exercises");
@@ -109,6 +245,9 @@ namespace DiplomaFit.Data.Migrations
                     b.Property<double>("FatGPer100")
                         .HasColumnType("float");
 
+                    b.Property<int>("FoodCategory")
+                        .HasColumnType("int");
+
                     b.Property<string>("FoodNameEn")
                         .IsRequired()
                         .HasMaxLength(250)
@@ -122,8 +261,14 @@ namespace DiplomaFit.Data.Migrations
                     b.Property<double>("KcalPer100")
                         .HasColumnType("float");
 
+                    b.Property<double>("MaxPortionGrams")
+                        .HasColumnType("float");
+
                     b.Property<int>("MealType")
                         .HasColumnType("int");
+
+                    b.Property<double>("MinPortionGrams")
+                        .HasColumnType("float");
 
                     b.Property<double>("ProteinGPer100")
                         .HasColumnType("float");
@@ -131,6 +276,69 @@ namespace DiplomaFit.Data.Migrations
                     b.HasKey("FoodId");
 
                     b.ToTable("Foods");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.Friendship", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AddresseeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RequesterId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("RespondedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddresseeId");
+
+                    b.HasIndex("RequesterId", "AddresseeId")
+                        .IsUnique();
+
+                    b.ToTable("Friendships");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.Gym", b =>
+                {
+                    b.Property<string>("GymId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<double?>("Rating")
+                        .HasColumnType("float");
+
+                    b.HasKey("GymId");
+
+                    b.ToTable("Gyms");
                 });
 
             modelBuilder.Entity("DiplomaFit.Model.Entities.User", b =>
@@ -174,9 +382,18 @@ namespace DiplomaFit.Data.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("ProfilePictureUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RefreshTokenExpiresAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("WeightKg")
                         .HasColumnType("float");
@@ -184,6 +401,126 @@ namespace DiplomaFit.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.ChatConversation", b =>
+                {
+                    b.HasOne("DiplomaFit.Model.Entities.User", "CreatedByUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CreatedByUser");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.ChatConversationMember", b =>
+                {
+                    b.HasOne("DiplomaFit.Model.Entities.ChatConversation", "Conversation")
+                        .WithMany("Members")
+                        .HasForeignKey("ConversationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DiplomaFit.Model.Entities.User", "User")
+                        .WithMany("ChatMemberships")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Conversation");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.ChatMessage", b =>
+                {
+                    b.HasOne("DiplomaFit.Model.Entities.ChatConversation", "Conversation")
+                        .WithMany("Messages")
+                        .HasForeignKey("ConversationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("DiplomaFit.Model.Entities.User", "Receiver")
+                        .WithMany("ReceivedMessages")
+                        .HasForeignKey("ReceiverId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DiplomaFit.Model.Entities.User", "Sender")
+                        .WithMany("SentMessages")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Conversation");
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.ChatMessageRead", b =>
+                {
+                    b.HasOne("DiplomaFit.Model.Entities.ChatMessage", "Message")
+                        .WithMany("Reads")
+                        .HasForeignKey("MessageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DiplomaFit.Model.Entities.User", "User")
+                        .WithMany("ReadMessages")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Message");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.Friendship", b =>
+                {
+                    b.HasOne("DiplomaFit.Model.Entities.User", "Addressee")
+                        .WithMany("ReceivedFriendRequests")
+                        .HasForeignKey("AddresseeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("DiplomaFit.Model.Entities.User", "Requester")
+                        .WithMany("SentFriendRequests")
+                        .HasForeignKey("RequesterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Addressee");
+
+                    b.Navigation("Requester");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.ChatConversation", b =>
+                {
+                    b.Navigation("Members");
+
+                    b.Navigation("Messages");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.ChatMessage", b =>
+                {
+                    b.Navigation("Reads");
+                });
+
+            modelBuilder.Entity("DiplomaFit.Model.Entities.User", b =>
+                {
+                    b.Navigation("ChatMemberships");
+
+                    b.Navigation("ReadMessages");
+
+                    b.Navigation("ReceivedFriendRequests");
+
+                    b.Navigation("ReceivedMessages");
+
+                    b.Navigation("SentFriendRequests");
+
+                    b.Navigation("SentMessages");
                 });
 #pragma warning restore 612, 618
         }

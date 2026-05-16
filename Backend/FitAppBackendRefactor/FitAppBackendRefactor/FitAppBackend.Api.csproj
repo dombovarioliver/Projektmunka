@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\exercises\**" />
+    <Content Remove="wwwroot\exercises\**" />
+    <EmbeddedResource Remove="wwwroot\exercises\**" />
+    <None Remove="wwwroot\exercises\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.26" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.26" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.26" />
