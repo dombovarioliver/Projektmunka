@@ -6,6 +6,9 @@ using DiplomaFit.Service.FoodService;
 using DiplomaFit.Service.GymService;
 using DiplomaFit.Service.UserService;
 using DiplomaFit.Service.WorkoutService;
+using FitAppBackendRefactor.Hubs;
+using DiplomaFit.Service.FriendService;
+using DiplomaFit.Service.ChatService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Controllers + Swagger
 builder.Services.AddControllers();
+builder.Services.AddSignalR();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -103,6 +107,23 @@ builder.Services
 
             ClockSkew = TimeSpan.Zero
         };
+
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var accessToken = context.Request.Query["access_token"];
+                var path = context.HttpContext.Request.Path;
+
+                if (!string.IsNullOrEmpty(accessToken) &&
+                    path.StartsWithSegments("/hubs/chat"))
+                {
+                    context.Token = accessToken;
+                }
+
+                return Task.CompletedTask;
+            }
+        };
     });
 
 builder.Services.AddAuthorization();
@@ -143,6 +164,8 @@ builder.Services.AddScoped<ExerciseRepository>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<FoodService>();
 builder.Services.AddScoped<ExerciseService>();
+builder.Services.AddScoped<FriendService>();
+builder.Services.AddScoped<ChatService>();
 
 builder.Services.AddScoped<DietPlanService>();
 builder.Services.AddScoped<WorkoutPlanService>();
@@ -201,5 +224,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<ChatHub>("/hubs/chat");
 
 app.Run();

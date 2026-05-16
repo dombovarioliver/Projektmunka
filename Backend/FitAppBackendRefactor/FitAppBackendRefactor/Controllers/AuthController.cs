@@ -167,17 +167,30 @@ namespace FitAppBackend.Api.Controllers
 
         [Authorize]
         [HttpGet("me")]
-        public IActionResult Me()
+        public async Task<IActionResult> Me()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var email = User.FindFirstValue(ClaimTypes.Email);
-            var name = User.FindFirstValue(ClaimTypes.Name);
+
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                return Unauthorized();
+            }
+
+            var user = await ctx.Users
+                .AsNoTracking()
+                .SingleOrDefaultAsync(x => x.Id == userId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
 
             return Ok(new
             {
-                userId,
-                email,
-                name
+                userId = user.Id,
+                email = user.Email,
+                name = user.Name,
+                profilePictureUrl = user.ProfilePictureUrl ?? string.Empty
             });
         }
 

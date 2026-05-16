@@ -21,6 +21,15 @@ namespace DiplomaFit.Model.Dto.Food
         [Required]
         public MealType MealType { get; set; }
 
+        [Required]
+        public FoodCategory FoodCategory { get; set; }
+
+        [Range(1, 2000)]
+        public double MinPortionGrams { get; set; } = 50;
+
+        [Range(1, 2000)]
+        public double MaxPortionGrams { get; set; } = 250;
+
         [Range(0, 2000)]
         public double KcalPer100 { get; set; }
 

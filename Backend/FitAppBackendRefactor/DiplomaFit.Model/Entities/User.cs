@@ -59,5 +59,13 @@ namespace DiplomaFit.Model.Entities
         public int GoalTimeWeeks { get; set; }
 
         public string ProfilePictureUrl { get; set; } = string.Empty;
+
+        public virtual ICollection<Friendship> SentFriendRequests { get; set; } = new List<Friendship>();
+
+        public virtual ICollection<Friendship> ReceivedFriendRequests { get; set; } = new List<Friendship>();
+
+        public virtual ICollection<ChatMessage> SentMessages { get; set; } = new List<ChatMessage>();
+
+        public virtual ICollection<ChatMessage> ReceivedMessages { get; set; } = new List<ChatMessage>();
     }
 }

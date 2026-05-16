@@ -6,6 +6,7 @@ import HomePage from "../features/home/pages/HomePage";
 import ExercisesPage from "../features/exercises/pages/ExercisesPage";
 import WorkoutPlanPage from "../features/workoutPlans/pages/WorkoutPlanPage";
 import ChatPage from "../features/chat/pages/ChatPage";
+import FriendsPage from "../features/friends/pages/FriendsPage";
 import ProfilePage from "../features/users/pages/ProfilePage";
 import GymsMapPage from "../features/gyms/pages/GymsMapPage";
 import LoginPage from "../features/auth/pages/LoginPage";
@@ -47,6 +48,7 @@ export default function AppRouter() {
           <Route path="/exercises" element={<ExercisesPage />} />
           <Route path="/workout-plan" element={<WorkoutPlanPage />} />
           <Route path="/diet-plan" element={<DietPlanPage />} />
+          <Route path="/friends" element={<FriendsPage />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Route>
